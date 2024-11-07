@@ -1,12 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Ex } from "./pages/home/Home";
+import { Home } from "./pages/home/Home";
+import { CompareMyCompany } from "./pages/compare/Comparemycompany";
+import { Header } from "./shared/component/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="ex" element={<Ex />} />
-      </Routes>
+      <Header />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="compare" element={<CompareMyCompany />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
