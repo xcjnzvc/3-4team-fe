@@ -45,7 +45,7 @@ export function Header() {
           <li>
             {/* 임시경로입니다 수정해야해요! */}
             <NavLink
-              to="/s"
+              to="/investment"
               style={({ isActive }) => {
                 return isActive ? activeStyle : defaultColor;
               }}
