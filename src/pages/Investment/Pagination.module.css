@@ -1,0 +1,63 @@
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 110px;
+}
+
+.arrowButton {
+  border: 1px solid #2e2e2e;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.6rem;
+  background-color: #2e2e2e;
+  cursor: pointer;
+  background: url("/public/img/ic_arrow_left.png") no-repeat center / 24px 24px;
+}
+
+.arrowButton.right {
+  background: url("/public/img/ic_arrow_right.png") no-repeat center / 24px 24px;
+}
+
+.arrowButton:hover {
+  background-color: #2e2e2e;
+}
+
+.arrowButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pageNumber {
+  border: 1px solid #2e2e2e;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #747474;
+  background-color: #2e2e2e;
+  cursor: pointer;
+}
+
+.pageNumber:hover {
+  background-color: #d8d8d8;
+}
+
+.active {
+  background-color: #eb5230;
+  color: white;
+  border-color: #eb5230;
+}
+
+.active:hover {
+  background-color: #eb5230;
+  color: white;
+  border-color: #eb5230;
+}

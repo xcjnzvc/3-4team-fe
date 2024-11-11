@@ -5,9 +5,7 @@ import InvestmentList from "./InvestmentList";
 import data from "./tempData";
 
 function InvestmentOverview() {
-  const [sortOption, setSortOption] = useState(
-    "View My Startup 투자 금액 높은순"
-  );
+  const [sortOption, setSortOption] = useState("simInvest_desc");
 
   const handleSortOptionChange = (option) => {
     setSortOption(option);
@@ -16,13 +14,13 @@ function InvestmentOverview() {
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => {
       switch (sortOption) {
-        case "View My Startup 투자 금액 높은순":
+        case "simInvest_desc":
           return b.simInvest - a.simInvest;
-        case "View My Startup 투자 금액 낮은순":
+        case "simInvest_asc":
           return a.simInvest - b.simInvest;
-        case "실제 누적 투자 금액 높은순":
+        case "actualInvest_desc":
           return b.actualInvest - a.actualInvest;
-        case "실제 누적 투자 금액 낮은순":
+        case "actualInvest_asc":
           return a.actualInvest - b.actualInvest;
         default:
           return 0;
