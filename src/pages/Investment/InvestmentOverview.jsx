@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styles from "./InvestmentOverview.module.css";
 import CustomSelect from "../../shared/component/CustomSelect";
 import InvestmentList from "./InvestmentList";
-import data from "./tempData";
+// import data from "./tempData";
 
 function InvestmentOverview() {
   const [sortOption, setSortOption] = useState("simInvest_desc");
+  const [data, setData] = useState([]); // 백엔드에서 가져온 데이터를 저장할 상태
 
   const handleSortOptionChange = (option) => {
     setSortOption(option);
@@ -17,6 +18,17 @@ function InvestmentOverview() {
     { label: "실제 누적 투자 금액 높은순", value: "actualInvest_desc" },
     { label: "실제 누적 투자 금액 낮은순", value: "actualInvest_asc" },
   ];
+
+  // 데이터 가져오기
+  useEffect(() => {
+    fetch("http://localhost:8000/yousuk/investment") // 백엔드 API URL
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("Fetched data:", data); // 받아온 데이터 확인
+        setData(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => {
@@ -33,7 +45,7 @@ function InvestmentOverview() {
           return 0;
       }
     });
-  }, [sortOption]);
+  }, [sortOption, data]); //useEffect로 비동기 호출을 함으로
 
   return (
     <div>
