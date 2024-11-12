@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./InvestmentList.module.css";
-import Pagination from "./Pagination";
+import Pagination from "../../shared/component/Pagination";
 
 function InvestmentList({ data }) {
   const itemsPerPage = 10;
