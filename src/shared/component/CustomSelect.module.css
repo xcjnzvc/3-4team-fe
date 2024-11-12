@@ -1,0 +1,59 @@
+.selectContainer {
+  position: relative;
+  width: 264px;
+}
+
+.selectTitle {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  background-color: #131313;
+  color: #d8d8d8;
+  border-radius: 10px;
+  border: 1px solid #747474;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 16px;
+  width: 21.5px;
+  height: 21.5px;
+  background: url("/public/img/ic_toggle.png") no-repeat center / 21.5px;
+}
+
+.selectArrowOpen {
+  transform: rotate(180deg);
+}
+
+.optionsContainer {
+  position: absolute;
+  width: 100%;
+  margin-top: 8px;
+  background-color: black;
+  border: 1px solid #747474;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.option {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #d8d8d8;
+  cursor: pointer;
+  border-bottom: 1px solid #747474;
+  text-align: center;
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background-color: #333;
+}
