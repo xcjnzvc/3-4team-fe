@@ -45,7 +45,6 @@
 .row .description {
   text-align: left;
   padding: 0 16px;
-  /* word-break: keep-all; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
