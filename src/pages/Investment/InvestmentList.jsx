@@ -37,10 +37,10 @@ function InvestmentList({ data }) {
               />
               {item.name}
             </div>
-            <div>{item.description}</div>
+            <div className={styles.description}>{item.description}</div>
             <div>{item.category.category}</div>
-            <div>{item.simInvest / 1000000}백만 원</div>
-            <div>{item.actualInvest / 1000000}백만 원</div>
+            <div>{item.simInvest / 100000000}억 원</div>
+            <div>{item.actualInvest / 100000000}억 원</div>
           </div>
         ))}
       </div>

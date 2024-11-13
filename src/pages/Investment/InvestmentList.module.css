@@ -2,7 +2,7 @@
   margin-top: 16px;
   display: grid;
   /* grid-template-columns: 68px 213px 304px 153px 230px 230px; */
-  grid-template-columns: 0.5fr 1.75fr 2.5fr 1.25fr 2fr 2fr;
+  grid-template-columns: 0.57fr 1.78fr 2.54fr 1.28fr 1.92fr 1.92fr;
 }
 
 .row {
@@ -40,6 +40,15 @@
   margin-right: 12px;
   vertical-align: middle;
   border-radius: 50%;
+}
+
+.row .description {
+  text-align: left;
+  padding: 0 16px;
+  /* word-break: keep-all; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* .hideOnMobile {
