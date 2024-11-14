@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
-import styles from "./InvestmentOverview.module.css";
+import styles from "./CompareOverview.module.css";
 import CustomSelect from "../../shared/component/CustomSelect";
-import InvestmentList from "./InvestmentList";
+import InvestmentList from "./CompareList";
 // import data from "./tempData";
 
-function InvestmentOverview() {
+function CompareOverview() {
   const [sortOption, setSortOption] = useState("simInvest_desc");
   const [data, setData] = useState([]); // 백엔드에서 가져온 데이터를 저장할 상태
 
@@ -13,10 +13,10 @@ function InvestmentOverview() {
   };
 
   const sortOptions = [
-    { label: "View My Startup 투자 금액 높은순", value: "simInvest_desc" },
-    { label: "View My Startup 투자 금액 낮은순", value: "simInvest_asc" },
-    { label: "실제 누적 투자 금액 높은순", value: "actualInvest_desc" },
-    { label: "실제 누적 투자 금액 낮은순", value: "actualInvest_asc" },
+    { label: "나의 기업 선택 횟수 높은순", value: "simInvest_desc" },
+    { label: "나의 기업 선택 횟수 낮은순", value: "simInvest_asc" },
+    { label: "비교 기업 선택 횟수 높은순", value: "actualInvest_desc" },
+    { label: "비교 기업 선택 횟수 낮은순", value: "actualInvest_asc" },
   ];
 
   // 데이터 가져오기
@@ -50,7 +50,7 @@ function InvestmentOverview() {
   return (
     <div>
       <div className={styles.titleBar}>
-        <div className={styles.title}>투자 현황</div>
+        <div className={styles.title}>비교 현황</div>
         <CustomSelect
           options={sortOptions} // options을 상위에서 전달
           onOptionChange={handleSortOptionChange}
@@ -62,4 +62,4 @@ function InvestmentOverview() {
   );
 }
 
-export default InvestmentOverview;
+export default CompareOverview;
