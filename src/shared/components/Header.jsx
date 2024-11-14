@@ -1,5 +1,5 @@
 // import styles from "../component/headerModule.css";
-import "../component/header.css";
+import "../components/header.css";
 import "../css/com.css";
 import { Link, NavLink } from "react-router-dom";
 

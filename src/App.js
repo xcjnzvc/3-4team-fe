@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { CompareMyCompany } from "./pages/compare/Comparemycompany";
 import CompareOverview from "./pages/compare/CompareOverview"
-import InvestmentOverview from "./pages/Investment/InvestmentOverview"
-import { Header } from "./shared/component/Header";
+import InvestmentOverview from "./pages/Investment/InvestmentOverview";
+import { Header } from "./shared/components/Header";
 
 function App() {
   return (
