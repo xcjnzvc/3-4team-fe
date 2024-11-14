@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styles from "./CompareOverview.module.css";
-import CustomSelect from "../../shared/component/CustomSelect";
+import CustomSelect from "../../shared/components/CustomSelect";
 import InvestmentList from "./CompareList";
 // import data from "./tempData";
 
