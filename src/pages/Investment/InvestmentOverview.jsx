@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styles from "./InvestmentOverview.module.css";
-import CustomSelect from "../../shared/component/CustomSelect";
+import CustomSelect from "../../shared/components/CustomSelect";
 import InvestmentList from "./InvestmentList";
 // import data from "./tempData";
 
