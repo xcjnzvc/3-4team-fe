@@ -17,7 +17,7 @@ export function Header() {
     <header>
       <div className="gnb">
         <Link to="/" className="logo">
-          <img src="/img/img_logo.png" />
+          <img src="/img/img_logo.png" alt="logo" />
         </Link>
         <ul className="nav">
           <li>

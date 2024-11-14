@@ -31,16 +31,16 @@ function InvestmentList({ data }) {
             <div>{offset + index + 1}위</div>
             <div className={styles.leftAlign}>
               <img
-                src={item.logo}
+                src={item.logo || "img/companyLogo/codeit.png"}
                 alt={`${item.name} 로고`}
                 className={styles.companyLogo}
               />
               {item.name}
             </div>
-            <div>{item.description}</div>
-            <div>{item.category}</div>
-            <div>{item.simInvest}억 원</div>
-            <div>{item.actualInvest}억 원</div>
+            <div className={styles.description}>{item.description}</div>
+            <div>{item.category.category}</div>
+            <div>{item.simInvest / 100000000}억 원</div>
+            <div>{item.actualInvest / 100000000}억 원</div>
           </div>
         ))}
       </div>
