@@ -5,7 +5,7 @@ import InvestmentList from "./CompareList";
 // import data from "./tempData";
 
 function CompareOverview() {
-  const [sortOption, setSortOption] = useState("simInvest_desc");
+  const [sortOption, setSortOption] = useState("myCount_desc");
   const [data, setData] = useState([]); // 백엔드에서 가져온 데이터를 저장할 상태
 
   const handleSortOptionChange = (option) => {
@@ -13,10 +13,10 @@ function CompareOverview() {
   };
 
   const sortOptions = [
-    { label: "나의 기업 선택 횟수 높은순", value: "simInvest_desc" },
-    { label: "나의 기업 선택 횟수 낮은순", value: "simInvest_asc" },
-    { label: "비교 기업 선택 횟수 높은순", value: "actualInvest_desc" },
-    { label: "비교 기업 선택 횟수 낮은순", value: "actualInvest_asc" },
+    { label: "나의 기업 선택 횟수 높은순", value: "myCount_desc" },
+    { label: "나의 기업 선택 횟수 낮은순", value: "myCount_asc" },
+    { label: "비교 기업 선택 횟수 높은순", value: "compareCount_desc" },
+    { label: "비교 기업 선택 횟수 낮은순", value: "compareCount_asc" },
   ];
 
   // 데이터 가져오기
@@ -33,14 +33,14 @@ function CompareOverview() {
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => {
       switch (sortOption) {
-        case "simInvest_desc":
-          return b.simInvest - a.simInvest;
-        case "simInvest_asc":
-          return a.simInvest - b.simInvest;
-        case "actualInvest_desc":
-          return b.actualInvest - a.actualInvest;
-        case "actualInvest_asc":
-          return a.actualInvest - b.actualInvest;
+        case "myCount_desc":
+          return b.myCount - a.myCount;
+        case "myCount_asc":
+          return a.myCount - b.myCount;
+        case "compareCount_desc":
+          return b.compareCount - a.compareCount;
+        case "compareCount_asc":
+          return a.compareCount - b.compareCount;
         default:
           return 0;
       }
