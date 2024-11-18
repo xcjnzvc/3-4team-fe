@@ -1,5 +1,10 @@
 import "./comparemycompany.css";
+import { CompareModal } from "./Comparemodal";
 
 export function CompareMyCompany() {
-  return <div className="inner">//여기서 작업하시면 돼요!!</div>;
+  return (
+    <div className="inner">
+      <CompareModal />
+    </div>
+  );
 }

@@ -48,7 +48,10 @@
 
 .search_box > input {
   background-color: transparent;
+  outline: none;
+  color: #747474;
   border: none;
+  font-size: 14px;
   width: 100%;
 }
 
@@ -109,4 +112,53 @@
   border: 1px solid #747474;
   background-color: transparent;
   color: #747474;
+}
+
+/* 여기서부터 페이지네이션 */
+.pagination {
+  border: 1px solid #fff;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 54px;
+}
+
+.arrowButton {
+  border: 1px solid #2e2e2e;
+  width: 32px;
+  height: 32px;
+  line-height: 48px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.6rem;
+  background-color: #2e2e2e;
+  cursor: pointer;
+  background: url("/public/img/ic_arrow_left.png") no-repeat center / 24px 24px;
+}
+
+.arrowButton.right {
+  background: url("/public/img/ic_arrow_right.png") no-repeat center / 24px 24px;
+}
+
+.pageNumber {
+  border: 1px solid #2e2e2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #747474;
+  background-color: #2e2e2e;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #eb5230;
+  color: white;
+  border-color: #eb5230;
 }

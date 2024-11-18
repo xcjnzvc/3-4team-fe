@@ -21,7 +21,7 @@ function InvestmentOverview() {
 
   // 데이터 가져오기
   useEffect(() => {
-    fetch("http://localhost:8000/investment") // 백엔드 API URL
+    fetch("http://localhost:8000/api/investments") // 백엔드 API URL
       .then((response) => response.json())
       .then((data) => {
         // console.log("Fetched data:", data); // 받아온 데이터 확인
