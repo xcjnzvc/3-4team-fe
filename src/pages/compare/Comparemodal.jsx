@@ -11,7 +11,9 @@ function CompanyBox({
   onClick,
   btnStyle = {},
   btnText = "선택하기",
+  imgDisplay = false,
 }) {
+  // console.log("asd", onClick);
   return (
     <div className={styles.company_box}>
       <div className={styles.left}>
@@ -22,6 +24,8 @@ function CompanyBox({
         <p>{category}</p>
       </div>
       <button style={btnStyle} onClick={onClick}>
+        {/** true ? 이거 해라 : 이거 하지 마라 */}
+        {imgDisplay ? <img src="/img/ic_check.png" /> : null}
         {btnText}
       </button>
     </div>
@@ -51,56 +55,73 @@ export function CompareModal() {
   // 검색 ㅏ
   const [keyword, setKeyword] = useState("");
 
-  // 보지마시오
-  const selectHandle = (e) => {
-    const name = e.target.parentNode.children[0].children[1].textContent;
-    const category = e.target.parentNode.children[0].children[2].textContent;
-    if (select.length > 4) {
+  //id 선택값
+  const [selectedIds, setSelectedIds] = useState([]);
+
+  //이전 배열값
+  const [arr1, setArr1] = useState([]);
+
+  // 선택해제 버튼
+  const exHandle = (selectid) => {
+    const newArry = selectedIds.filter((row) => row.id !== selectid.id);
+    console.log(newArry);
+    setSelectedIds(newArry);
+    const newData = data.map((row) => {
+      if (row.id === selectid.id) {
+        return {
+          ...row,
+          isSelect: false,
+        };
+      } else {
+        return row;
+      }
+    });
+    // console.log(selectId.id);
+    setData(newData);
+  };
+
+  //선택하기 버튼
+  const selHandle = (selectId) => {
+    if (selectedIds.length > 4) {
       alert(`"ㅗ"`);
       return;
     }
-    const target = e.target; //document.querySelect() 같음;
-    // console.log(target);
 
-    if (target.className.includes("add")) {
-      return;
-    }
+    if (selectedIds.find((v) => v.id === selectId.id)) return;
 
-    // innerHTML 은 태그도 들어감
-    target.innerHTML = `<img src="/img/ic_check.png"/>선택완료`;
-    // target.classList.add('')
-    const newArr = [...select, { name, category: { category: category } }];
-    setSelect(newArr);
-    target.classList.add("add");
-    target.style.color = "#D8D8D8";
-    target.style.borderColor = "#D8D8D8";
-    // console.log(target.classList[1]);
-  };
-
-  const outListHandle = (e) => {
-    const target = e.target; //document.querySelect() 같음;
-    const name = e.target.parentNode.children[0].children[1].textContent;
-
-    console.log("타겟", e.target);
-    // console.log(select);
-    // btn
-    const addTarget = document.querySelectorAll(".add");
-    [...addTarget].map((value) => {
-      const name_add = value.parentNode.children[0].children[1];
-      if (name_add.textContent === name) {
-        value.classList.remove("add");
-        value.style.color = "#eb5230";
-        value.style.borderColor = "#eb5230";
-        value.innerHTML = "선택하기";
+    setSelectedIds([...selectedIds, selectId]);
+    const newData = data.map((row) => {
+      if (row.id === selectId.id) {
+        return {
+          ...row,
+          isSelect: true,
+        };
+      } else {
+        return row;
       }
     });
-    const con = select.filter((value) => value.name !== name);
-    setSelect([...con]);
-    // target.classList.remove(addTarget); // 객체.클래스리스트.지운다("클래스이름")
-    // target.parentNode.remove();
+    // console.log(selectId.id);
+    setData(newData);
   };
 
   useEffect(() => {
+    // console.log(data, selectedIds);
+    const d = selectedIds.filter((v) => {
+      setArr1(data);
+      if (arr1.find((x) => x.id === v.id)) {
+        return arr1;
+      }
+    });
+    if (d) {
+      const aa = d.map((v) => {
+        return {
+          ...v,
+          isSelect: true,
+        };
+      });
+      setData(aa);
+      console.log("dddd", aa);
+    }
     const settingCompany = async () => {
       const _data = await getCompanyApi(5, page - 1, keyword);
       setData(_data.data);
@@ -142,7 +163,8 @@ export function CompareModal() {
   };
 
   const onClickHandle = (event) => {
-    console.log(event.target);
+    // console.log(event.target);
+
     setPage(Number(event.target.textContent));
   };
   const searchHandle = (e) => {
@@ -192,18 +214,19 @@ export function CompareModal() {
         />
       </div>
       <div className={styles.select_company}>
-        <h3>선택한 기업 ({select.length})</h3>
-        {select.length === 0 ? (
+        <h3>선택한 기업 ({selectedIds.length})</h3>
+        {selectedIds.length === 0 ? (
           <p className="">기업을 선택 해주세요</p>
         ) : (
-          select.map((value, index) => {
+          selectedIds.map((value, index) => {
             return (
               <CompanyBox
                 key={index}
                 name={value.name}
                 category={value.category.category}
                 btnText="선택 해제"
-                onClick={outListHandle}
+                onClick={() => exHandle(value)}
+                // onClick={outListHandle}
               />
             );
           })
@@ -215,13 +238,18 @@ export function CompareModal() {
           return (
             <CompanyBox
               key={index}
+              id={value.id}
               name={value.name}
               category={value.category.category}
-              onClick={selectHandle}
+              // onClick={selectHandle}
+              btnText={value.isSelect ? "선택 완료" : "선택하기"}
+              onClick={() => selHandle(value)}
               btnStyle={{
-                color: "#EB5230",
-                borderColor: "#EB5230",
+                color: value.isSelect ? "white" : "#EB5230",
+                borderColor: value.isSelect ? "white" : "#EB5230",
+                // backgroundImage: value.isSelect ? "/img/ic_check.png" : "",
               }}
+              imgDisplay={value.isSelect}
             />
           );
         })}
