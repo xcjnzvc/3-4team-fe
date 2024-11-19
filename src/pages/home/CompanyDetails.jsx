@@ -5,7 +5,7 @@ import styles from "./CompanyDetails.module.css";
 function CompanyDetails() {
   const { id } = useParams();
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     fetch(`http://localhost:8000/api/companies/${id}`)
@@ -14,7 +14,7 @@ function CompanyDetails() {
         console.log("Fetched data:", data); // 받아온 데이터 확인
         setData(data);
       });
-  }, []);
+  }, [id]);
 
   return (
     <>
