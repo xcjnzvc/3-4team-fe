@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getCompanyApi } from "../../shared/api/api";
+import SelectBox from "../../shared/components/SelectComponenet";
 import styles from "./comparemodal.module.css";
 import "./custom.css";
 
@@ -55,9 +56,6 @@ export function CompareModal({ closeModal }) {
   // 선택해제 버튼
   const deselectHandle = (selectid) => {
     const newArry = selectedIds.filter((row) => row.id !== selectid.id);
-    // newArry.map((value) => {
-    //   return { ...value, isSelect: false };
-    // });
     // console.log(
     //   "if",
     //   selectedIds.filter((row) => row.id !== selectid.id)
@@ -107,7 +105,7 @@ export function CompareModal({ closeModal }) {
       setTotalLength(_data.totalCount);
     };
     settingCompany();
-  }, [page]);
+  }, [page, selectedIds]);
 
   const arr = [];
   for (let i = startPage; i <= lastPage; i++) {
@@ -141,34 +139,11 @@ export function CompareModal({ closeModal }) {
     setPage(Number(event.target.textContent));
   };
 
-  const searchHandle = (e) => {
-    // 값이 변할때마다 api 가져옴
-    setKeyword(e.target.value);
-    getCompanyApi(5, 0, e.target.value).then((res) => {
-      setData(res.data);
-      setTotalLength(res.totalCount);
-      setPagenumber(
-        Math.ceil(res.totalCount / sellCount) < 1
-          ? 1
-          : Math.ceil(res.totalCount / sellCount)
-      );
-    });
-  };
-
-  const enterEvent = (e) => {
-    if (e.keyCode === 13) {
-      // enter 키코드가 13이라 keydown 이벤트를 이용했음
-      getCompanyApi(5, 0, keyword).then((res) => {
-        setData(res.data);
-        setTotalLength(res.totalCount);
-        setPagenumber(
-          Math.ceil(res.totalCount / sellCount) < 1
-            ? 1
-            : Math.ceil(res.totalCount / sellCount)
-        );
-      });
-    }
-  };
+  useEffect(() => {
+    console.log("키워드", keyword);
+    console.log("데이터", data);
+    console.log("토탈길이", totalLength);
+  }, [keyword]);
 
   return (
     <div className={styles.m_inner}>
@@ -176,18 +151,14 @@ export function CompareModal({ closeModal }) {
         <h2>비교할 기업 선택하기</h2>
         <span onClick={closeModal}>x</span>
       </div>
-      <div className={styles.search_box}>
-        <button>
-          <img src="/img/ic_search.png" />
-        </button>
-        <input
-          type="text"
-          name="compare_search"
-          placeholder="검색어를 입력하세요"
-          onChange={searchHandle}
-          onKeyDown={enterEvent}
-        />
-      </div>
+      <SelectBox
+        className={styles.search_box}
+        keyword={setKeyword}
+        data={setData}
+        totalLength={setTotalLength}
+        count={sellCount}
+        pageNum={setPagenumber}
+      />
       <div className={styles.select_company}>
         <h3>선택한 기업 ({selectedIds.length})</h3>
         {selectedIds.length === 0 ? (
