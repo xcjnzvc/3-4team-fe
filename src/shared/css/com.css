@@ -20,11 +20,9 @@ a {
 
 /* 컨테이너 잡아두어서 이 안에서 스타일 짜시면 될 것 같아요 */
 .container {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   max-width: 1200px;
-  min-height: 100vh;
+  min-height: calc (100vh - 70px);
   width: 100%;
   margin: 0 auto;
 }
-
-
