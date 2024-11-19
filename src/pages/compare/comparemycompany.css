@@ -1,88 +1,80 @@
-<<<<<<< HEAD
-.add{
-    
-}
-=======
 .header {
-    margin-bottom: 150px;
+  margin-bottom: 150px;
 }
-
 
 .header-title {
-    position: relative;
-    font-family: Pretendard;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 23.87px;
-    top: 140px;
-    margin-bottom: 40px;
+  position: relative;
+  font-family: Pretendard;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  top: 140px;
+  margin-bottom: 40px;
 }
 
 .company-list {
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    width: 1200px; 
-    height: 300px; 
-    background-color: #212121; 
-    border-radius: 10px; 
-    margin: 0 auto; 
-    padding: 10px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  height: 300px;
+  background-color: #212121;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
-.add-button{
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    width: 48px; 
-    height: 48px; 
-    border-radius: 50%; 
-    border: none; 
-    background-color: #e0e0e0; 
-    cursor: pointer; 
-    margin-bottom: 58px;
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  margin-bottom: 58px;
 }
 
-.add-button-text{
-    font-family: Pretendard;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21.48px;
-    text-align: center;
-    color: #ffffff
-
+.add-button-text {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.48px;
+  text-align: center;
+  color: #ffffff;
 }
 
-.footer{
-    display: flex;
-    justify-content: center; 
-    align-items: center;       
-    width: 100%;               
-    height: auto;              
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
 }
 
 .compare-button {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 13px 48px;
-    gap: 10px;
-    border-radius: 50px;
-    opacity: 0px;
-    margin-top: 50px;
-    background-color: #212121;
-    border: none;
-    cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 13px 48px;
+  gap: 10px;
+  border-radius: 50px;
+  opacity: 0px;
+  margin-top: 50px;
+  background-color: #212121;
+  border: none;
+  cursor: pointer;
 }
 
 .compare-button-text {
-    font-family: Pretendard;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 19.09px;
-    text-align: center;
-    color: #747474;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+  text-align: center;
+  color: #747474;
 }
->>>>>>> dev

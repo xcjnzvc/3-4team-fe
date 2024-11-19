@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getCompanyApi } from "../../shared/api/api";
 import styles from "./comparemodal.module.css";
-// import "./comparemodal.css";
 import "./custom.css";
 
 function CompanyBox({
@@ -32,7 +31,7 @@ function CompanyBox({
   );
 }
 
-export function CompareModal() {
+export function CompareModal({ closeModal }) {
   //api에서 데이터 불러오기
   const [data, setData] = useState([]);
   // 데이터 전체 길이
@@ -48,42 +47,29 @@ export function CompareModal() {
   const [startPage, setStartpage] = useState(1);
   // 마지막 페이지
   const [lastPage, setLastpage] = useState(5);
-
-  //선택 기업
-  const [select, setSelect] = useState([]);
-
   // 검색 ㅏ
   const [keyword, setKeyword] = useState("");
-
   //id 선택값
   const [selectedIds, setSelectedIds] = useState([]);
 
-  //이전 배열값
-  const [arr1, setArr1] = useState([]);
-
   // 선택해제 버튼
-  const exHandle = (selectid) => {
+  const deselectHandle = (selectid) => {
     const newArry = selectedIds.filter((row) => row.id !== selectid.id);
-    console.log(newArry);
+    // newArry.map((value) => {
+    //   return { ...value, isSelect: false };
+    // });
+    // console.log(
+    //   "if",
+    //   selectedIds.filter((row) => row.id !== selectid.id)
+    // );
+    // console.log("newArry", newArry);
     setSelectedIds(newArry);
-    const newData = data.map((row) => {
-      if (row.id === selectid.id) {
-        return {
-          ...row,
-          isSelect: false,
-        };
-      } else {
-        return row;
-      }
-    });
-    // console.log(selectId.id);
-    setData(newData);
   };
 
   //선택하기 버튼
-  const selHandle = (selectId) => {
+  const selectHandle = (selectId) => {
     if (selectedIds.length > 4) {
-      alert(`"ㅗ"`);
+      alert("돌아가");
       return;
     }
 
@@ -105,26 +91,14 @@ export function CompareModal() {
   };
 
   useEffect(() => {
-    // console.log(data, selectedIds);
-    const d = selectedIds.filter((v) => {
-      setArr1(data);
-      if (arr1.find((x) => x.id === v.id)) {
-        return arr1;
-      }
-    });
-    if (d) {
-      const aa = d.map((v) => {
-        return {
-          ...v,
-          isSelect: true,
-        };
-      });
-      setData(aa);
-      console.log("dddd", aa);
-    }
     const settingCompany = async () => {
       const _data = await getCompanyApi(5, page - 1, keyword);
-      setData(_data.data);
+      //api로 받아온 데이터에 선택 상태 반영
+      const updatedData = _data.data.map((item) => ({
+        ...item,
+        isSelect: selectedIds.some((selected) => selected.id === item.id),
+      }));
+      setData(updatedData);
       setPagenumber(
         Math.ceil(_data.totalCount / sellCount) < 1
           ? 1
@@ -164,9 +138,9 @@ export function CompareModal() {
 
   const onClickHandle = (event) => {
     // console.log(event.target);
-
     setPage(Number(event.target.textContent));
   };
+
   const searchHandle = (e) => {
     // 값이 변할때마다 api 가져옴
     setKeyword(e.target.value);
@@ -195,11 +169,12 @@ export function CompareModal() {
       });
     }
   };
+
   return (
     <div className={styles.m_inner}>
       <div className={styles.top_inner}>
         <h2>비교할 기업 선택하기</h2>
-        <span>x</span>
+        <span onClick={closeModal}>x</span>
       </div>
       <div className={styles.search_box}>
         <button>
@@ -216,7 +191,7 @@ export function CompareModal() {
       <div className={styles.select_company}>
         <h3>선택한 기업 ({selectedIds.length})</h3>
         {selectedIds.length === 0 ? (
-          <p className="">기업을 선택 해주세요</p>
+          <p className={styles.select_text}>기업을 선택 해주세요</p>
         ) : (
           selectedIds.map((value, index) => {
             return (
@@ -225,8 +200,7 @@ export function CompareModal() {
                 name={value.name}
                 category={value.category.category}
                 btnText="선택 해제"
-                onClick={() => exHandle(value)}
-                // onClick={outListHandle}
+                onClick={() => deselectHandle(value)}
               />
             );
           })
@@ -241,13 +215,11 @@ export function CompareModal() {
               id={value.id}
               name={value.name}
               category={value.category.category}
-              // onClick={selectHandle}
               btnText={value.isSelect ? "선택 완료" : "선택하기"}
-              onClick={() => selHandle(value)}
+              onClick={() => selectHandle(value)}
               btnStyle={{
                 color: value.isSelect ? "white" : "#EB5230",
                 borderColor: value.isSelect ? "white" : "#EB5230",
-                // backgroundImage: value.isSelect ? "/img/ic_check.png" : "",
               }}
               imgDisplay={value.isSelect}
             />

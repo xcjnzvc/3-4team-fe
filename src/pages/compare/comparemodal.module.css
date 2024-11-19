@@ -1,6 +1,6 @@
 .m_inner {
   width: 496px;
-  height: 930px;
+  /* height: 930px; */
   border-radius: 16px;
   background-color: #212121;
   margin: 15px auto 0;
@@ -65,11 +65,23 @@
   /* border: 1px solid; */
 }
 
+.select_company {
+  position: relative;
+  height: 330px;
+}
+
 .select_company > h3 {
   font-size: 18px;
   font-weight: 700;
   color: #fff;
   margin-bottom: 16px;
+}
+
+.select_text {
+  color: #747474;
+  position: absolute;
+  top: 50%;
+  right: 35%;
 }
 
 .company_box {
@@ -155,10 +167,4 @@
   color: #747474;
   background-color: #2e2e2e;
   cursor: pointer;
-}
-
-.active {
-  background-color: #eb5230;
-  color: white;
-  border-color: #eb5230;
 }
