@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styles from "./CompareOverview.module.css";
 import CustomSelect from "../../shared/components/CustomSelect";
-import InvestmentList from "./CompareList";
+import CompareList from "./CompareList";
 // import data from "./tempData";
 
 function CompareOverview() {
@@ -57,7 +57,7 @@ function CompareOverview() {
           selectedOption={sortOption}
         />
       </div>
-      <InvestmentList data={sortedData} />
+      <CompareList data={sortedData} />
     </div>
   );
 }

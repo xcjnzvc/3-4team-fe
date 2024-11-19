@@ -1,0 +1,55 @@
+.titleBar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: 48px;
+  color: #ffffff;
+  margin-top: 40px;
+  gap: 16px;
+  position: relative;
+}
+
+.title {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.87px;
+  position: absolute;
+  left: 0;
+}
+
+.search_box {
+  width: 448px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #747474;
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.search_box > button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+}
+
+.search_box > input {
+  background-color: transparent;
+  outline: none;
+  color: #747474;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+.search_box > button > img {
+  width: 100%;
+}
+
+.search_box > input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  /* border: 1px solid; */
+}
