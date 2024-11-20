@@ -5,6 +5,7 @@ import { CompareMyCompany } from "./pages/compare/Comparemycompany";
 import CompareOverview from "./pages/compare/CompareOverview"
 import InvestmentOverview from "./pages/Investment/InvestmentOverview";
 import { Header } from "./shared/components/Header";
+import CompareResult from "./pages/compare/CompareResult/CompareResult";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="compare" element={<CompareMyCompany />} />
           <Route path="compareoverview" element={<CompareOverview />} />
           <Route path="investment" element={<InvestmentOverview />} />
+          <Route path="/compareResult" element={<CompareResult />} />
         </Routes>
       </div>
     </BrowserRouter>
