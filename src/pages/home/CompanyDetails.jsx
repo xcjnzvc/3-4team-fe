@@ -18,14 +18,63 @@ function CompanyDetails() {
 
   return (
     <>
-      <div>
-        <h1>기업 상세 정보</h1>
-        <p>기업명: {data.name}</p>
-        <p>설명: {data.description}</p>
-        <p>카테고리: {data.category ? data.category.category : "정보 없음"}</p>
-        <p>투자금액: {data.actualInvest / 100000000}억 원</p>
-        <p>매출: {data.revenue / 100000000}억 원</p>
-        <p>직원수: {data.employees}명</p>
+      <div className={styles.titleBar}>
+        <img
+          src={data.logo || "/img/companyLogo/codeit.png"}
+          alt={`${data.name} 로고`}
+          className={styles.companyLogo}
+        />
+        <div className={styles.titleBox}>
+          <p className={styles.title}>{data.name}</p>
+          <p className={styles.subTitle}>
+            {data.category ? data.category.category : "정보 없음"}
+          </p>
+        </div>
+      </div>
+      <div className={styles.pointBoxBar}>
+        <div className={styles.pointBox}>
+          <p className={styles.pointBoxTitle}>누적 투자 금액</p>
+          <p className={styles.pointBoxValue}>
+            {data.actualInvest / 100000000}억 원
+          </p>
+        </div>
+        <div className={styles.pointBox}>
+          <p className={styles.pointBoxTitle}>매출액</p>
+          <p className={styles.pointBoxValue}>
+            {data.revenue / 100000000}억 원
+          </p>
+        </div>
+        <div className={styles.pointBox}>
+          <p className={styles.pointBoxTitle}>고용 인원</p>
+          <p className={styles.pointBoxValue}>{data.employees}명</p>
+        </div>
+      </div>
+      <div className={styles.descriptionBox}>
+        <p className={styles.descriptionBoxTitle}>기업소개</p>
+        <div className={styles.descriptionBoxIntro}>
+          <span>{data.category ? data.category.category : "정보 없음"}</span>{" "}
+          분야의 떠오르는 스타트업 <span>{data.name}</span> 입니다.
+        </div>
+        <p>
+          {data.description} Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Tenetur quos et, ut, autem nesciunt eveniet minima similique
+          blanditiis reiciendis, placeat aperiam repudiandae quasi veritatis
+          adipisci eligendi commodi numquam vero ratione. In quasi incidunt ad
+          fugiat natus exercitationem laudantium, placeat inventore, eius velit
+          totam pariatur tempora corrupti quia, possimus veniam est magni quis
+          modi quisquam. Alias cupiditate quaerat rem asperiores molestias{" "}
+          {data.category ? data.category.category : "정보 없음"} 스타트업
+          입니다.
+        </p>
+      </div>
+      <div className={styles.investBar}>
+        <div>View My Startup에서 받은 투자</div>
+        <div className={styles.goInvest}>기업투자하기</div>
+      </div>
+      <div className={styles.userInvest}>
+        <div className={styles.totalSimIvest}>
+          총 {data.simInvest / 100000000}억 원
+        </div>
       </div>
     </>
   );
