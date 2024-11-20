@@ -5,7 +5,13 @@ import Pagination from "../../shared/components/Pagination";
 import { useLocation } from "react-router-dom";
 import resultStyle from "../compare/CompareResult/CompareResult.module.css";
 
-function WholeList({ data, perPage = 10, isResult = false, isPagination = true}) {  // 비교결과페이지에서는 페이지네이션 X
+function WholeList({
+  data,
+  perPage = 10,
+  isResult = false,
+  isPagination = true,
+}) {
+  // 비교결과페이지에서는 페이지네이션 X
   const itemsPerPage = perPage;
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const [offset, setOffset] = useState(0); // offset을 이용해 시작 인덱스 관리
@@ -17,8 +23,8 @@ function WholeList({ data, perPage = 10, isResult = false, isPagination = true})
   const handlePageChange = (newOffset) => {
     setOffset(newOffset);
   };
-  
-  const style = isResult ? resultStyle : styles;  //비교결과 페이지에서 재사용할때(결과컴포넌트에는 순위 없음)
+
+  const style = isResult ? resultStyle : styles; //비교결과 페이지에서 재사용할때(결과컴포넌트에는 순위 없음)
 
   return (
     <div>
@@ -53,13 +59,14 @@ function WholeList({ data, perPage = 10, isResult = false, isPagination = true})
           </Link>
         ))}
       </div>
-      {!isPagination ? null : 
+      {!isPagination ? null : (
         <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChange={handlePageChange}
-        itemsPerPage={itemsPerPage}
-      />}
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+          itemsPerPage={itemsPerPage}
+        />
+      )}
     </div>
   );
 }
