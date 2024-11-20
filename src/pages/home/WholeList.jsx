@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./WholeList.module.css";
 import Pagination from "../../shared/components/Pagination";
 import { useLocation } from "react-router-dom";
@@ -32,22 +33,24 @@ function WholeList({ data, perPage = 10, isResult = false, isPagination = true})
           <div>고용 인원</div>
         </div>
         {currentItems.map((item, index) => (
-          <div className={style.row} key={index}>
-            {isResult ? null : <div>{offset + index + 1}위</div>}
-            <div className={style.leftAlign}>
-              <img
-                src={item.logo || "/img/companyLogo/codeit.png"}
-                alt={`${item.name} 로고`}
-                className={style.companyLogo}
-              />
-              {item.name}
+          <Link to={`/company/${item.id}`} key={index} className={style.row}>
+            <div className={style.row}>
+              {isResult ? null : <div>{offset + index + 1}위</div>}
+              <div className={style.leftAlign}>
+                <img
+                  src={item.logo || "img/companyLogo/codeit.png"}
+                  alt={`${item.name} 로고`}
+                  className={style.companyLogo}
+                />
+                {item.name}
+              </div>
+              <div className={style.description}>{item.description}</div>
+              <div>{item.category.category}</div>
+              <div>{item.actualInvest / 100000000}억 원</div>
+              <div>{item.revenue / 100000000}억 원</div>
+              <div>{item.employees}명</div>
             </div>
-            <div className={style.description}>{item.description}</div>
-            <div>{item.category.category}</div>
-            <div>{item.actualInvest / 100000000}억 원</div>
-            <div>{item.revenue / 100000000}억 원</div>
-            <div>{item.employees}명</div>
-          </div>
+          </Link>
         ))}
       </div>
       {!isPagination ? null : 
