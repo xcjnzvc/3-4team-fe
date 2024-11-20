@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import "./comparemycompany.css";
 
 export function CompareMyCompany() {
+  const navigate = useNavigate();
+  
+  function handleClick() {
+    navigate('/compareResult');
+  }
+
   return (
     <>
   <div class="container">
@@ -16,7 +23,7 @@ export function CompareMyCompany() {
     </section>
 
     <footer class="footer">
-      <button class="compare-button">
+      <button class="compare-button" onClick={handleClick}>
         <span class="compare-button-text">기업 비교하기</span>
       </button>
     </footer>

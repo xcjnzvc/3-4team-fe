@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "./WholeList.module.css";
 import Pagination from "../../shared/components/Pagination";
+import { useLocation } from "react-router-dom";
+import resultStyle from "../compare/CompareResult/CompareResult.module.css";
 
-function WholeList({ data }) {
-  const itemsPerPage = 10;
+function WholeList({ data, perPage = 10, isResult = false, isPagination = true}) {  // 비교결과페이지에서는 페이지네이션 X
+  const itemsPerPage = perPage;
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const [offset, setOffset] = useState(0); // offset을 이용해 시작 인덱스 관리
   const currentPage = Math.floor(offset / itemsPerPage) + 1; // 현재 페이지 계산
@@ -14,12 +16,14 @@ function WholeList({ data }) {
   const handlePageChange = (newOffset) => {
     setOffset(newOffset);
   };
+  
+  const style = isResult ? resultStyle : styles;  //비교결과 페이지에서 재사용할때(결과컴포넌트에는 순위 없음)
 
   return (
     <div>
-      <div className={styles.table}>
-        <div className={`${styles.row} ${styles.header}`}>
-          <div>순위</div>
+      <div className={style.table}>
+        <div className={`${style.row} ${style.header}`}>
+          {isResult ? null : <div>순위</div>}
           <div>기업 명</div>
           <div>기업 소개</div>
           <div>카테고리</div>
@@ -28,17 +32,17 @@ function WholeList({ data }) {
           <div>고용 인원</div>
         </div>
         {currentItems.map((item, index) => (
-          <div className={styles.row} key={index}>
-            <div>{offset + index + 1}위</div>
-            <div className={styles.leftAlign}>
+          <div className={style.row} key={index}>
+            {isResult ? null : <div>{offset + index + 1}위</div>}
+            <div className={style.leftAlign}>
               <img
-                src={item.logo || "img/companyLogo/codeit.png"}
+                src={item.logo || "/img/companyLogo/codeit.png"}
                 alt={`${item.name} 로고`}
-                className={styles.companyLogo}
+                className={style.companyLogo}
               />
               {item.name}
             </div>
-            <div className={styles.description}>{item.description}</div>
+            <div className={style.description}>{item.description}</div>
             <div>{item.category.category}</div>
             <div>{item.actualInvest / 100000000}억 원</div>
             <div>{item.revenue / 100000000}억 원</div>
@@ -46,12 +50,13 @@ function WholeList({ data }) {
           </div>
         ))}
       </div>
-      <Pagination
+      {!isPagination ? null : 
+        <Pagination
         totalPages={totalPages}
         currentPage={currentPage}
         onPageChange={handlePageChange}
         itemsPerPage={itemsPerPage}
-      />
+      />}
     </div>
   );
 }
