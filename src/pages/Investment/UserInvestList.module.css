@@ -1,0 +1,66 @@
+.totalSimIvest {
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 23.87px;
+  padding: 16px 0;
+}
+
+.table {
+  margin-top: 16px;
+  display: grid;
+  /* grid-template-columns: 84px 84px 84px 884px;*/
+  grid-template-columns: 0.0739fr 0.0739fr 0.0739fr 0.7782fr;
+}
+
+.row {
+  display: contents; /* row의 자식 요소들이 row의 상위요소에 직접 포함되게 끔 */
+}
+
+.table .header div {
+  height: 39px;
+  line-height: 39px;
+  border: none;
+  margin-bottom: 16px;
+  font-weight: 500;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+.row div {
+  height: 64px;
+  line-height: 64px;
+  background-color: #1f1f1f;
+  color: #d8d8d8;
+  border-bottom: 1px solid #4b4b4b;
+  text-align: center;
+  font-size: 14px;
+}
+
+.row .leftAlign {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* .hideOnMobile {
+  display: block;
+} */
+
+@media (max-width: 768px) {
+  /* .hideOnMobile {
+    display: none;
+  } */
+
+  .table {
+    grid-template-columns: 68px 1fr 230px;
+  }
+}
+
+.noData > p {
+  color: #747474;
+  font-weight: 400;
+  width: 250px;
+  height: 34px;
+  margin: 120px auto;
+  text-align: center;
+}
