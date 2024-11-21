@@ -128,7 +128,7 @@
 
 /* 여기서부터 페이지네이션 */
 .pagination {
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
   margin-top: 24px;
   display: flex;
   justify-content: center;

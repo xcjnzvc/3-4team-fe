@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCompanyApi } from "../../shared/api/api";
-import SelectBox from "../../shared/components/SelectComponenet";
-import styles from "./comparemodal.module.css";
+import { SmallPagenation } from "./smallPagenation";
+import SearchBox from "../../shared/components/SearchComponenet";
+import styles from "./modal.module.css";
 import "./custom.css";
 
 function CompanyBox({
@@ -32,12 +32,83 @@ function CompanyBox({
   );
 }
 
+// 여기서 +버튼 있는곳으로 선택 후 이동
+export function MyModal({
+  closeModal,
+  setPagenumber,
+  setPage,
+  page,
+  startPage,
+  lastPage,
+  setData,
+  setKeyword,
+  setTotalLength,
+  sellCount,
+  keyword,
+  totalLength,
+  data,
+  selectHandle,
+  pageNumber,
+  goodClick,
+  goodClick2,
+}) {
+  return (
+    <div className={styles.m_inner}>
+      <div className={styles.top_inner}>
+        <h2>나의 기업 선택하기</h2>
+        <span onClick={closeModal}>x</span>
+      </div>
+      <SearchBox
+        className={styles.search_box}
+        keyword={setKeyword}
+        data={setData}
+        totalLength={setTotalLength}
+        count={sellCount}
+        pageNum={setPagenumber}
+      />
+      <div className={styles.select_company}>
+        {keyword === "" ? (
+          <p className={styles.select_text}>기업을 검색해주세요</p>
+        ) : (
+          <>
+            <h3>최근 선택된 기업 ({totalLength})</h3>
+            {data.map((value, index) => {
+              return (
+                <CompanyBox
+                  key={index}
+                  id={value.id}
+                  name={value.name}
+                  category={value.category.category}
+                  btnText={value.isSelect ? "선택 완료" : "선택하기"}
+                  onClick={() => selectHandle(value)}
+                  btnStyle={{
+                    color: value.isSelect ? "white" : "#EB5230",
+                    borderColor: value.isSelect ? "white" : "#EB5230",
+                  }}
+                  imgDisplay={value.isSelect}
+                />
+              );
+            })}
+            <SmallPagenation
+              page={page}
+              setPage={setPage}
+              pageNumber={pageNumber}
+              startPage={startPage}
+              lastPage={lastPage}
+            />
+            <button onClick={goodClick2}>확인</button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function CompareModal({ closeModal }) {
   //api에서 데이터 불러오기
   const [data, setData] = useState([]);
   // 데이터 전체 길이
   const [totalLength, setTotalLength] = useState(0);
-
   //현재 페이지
   const [page, setPage] = useState(1);
   // 전체 데이터 갯수를 받아와서 셀카운터랑 나누고 페이지네이션 갯수를 설정하기 위해 사용 ( 19/5를 하기위해)
@@ -139,11 +210,11 @@ export function CompareModal({ closeModal }) {
     setPage(Number(event.target.textContent));
   };
 
-  useEffect(() => {
-    console.log("키워드", keyword);
-    console.log("데이터", data);
-    console.log("토탈길이", totalLength);
-  }, [keyword]);
+  // useEffect(() => {
+  //   console.log("키워드", keyword);
+  //   console.log("데이터", data);
+  //   console.log("토탈길이", totalLength);
+  // }, [keyword]);
 
   return (
     <div className={styles.m_inner}>
@@ -151,7 +222,7 @@ export function CompareModal({ closeModal }) {
         <h2>비교할 기업 선택하기</h2>
         <span onClick={closeModal}>x</span>
       </div>
-      <SelectBox
+      <SearchBox
         className={styles.search_box}
         keyword={setKeyword}
         data={setData}
