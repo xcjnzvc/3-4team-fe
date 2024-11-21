@@ -8,10 +8,9 @@ const axiosInstance = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-export async function getCompanyApi(limit, offset) {
-  const respnse = await axiosInstance.get(
-    `/api/companies?limit=${limit}&offset=${offset}`
-  );
+export async function getCompanyApi(limit, offset, keyword = "") {
+  let uri = `/api/companies?limit=${limit}&offset=${offset}&keyword=${keyword}`;
+  const respnse = await axiosInstance.get(uri);
 
   return respnse.data;
 }
