@@ -17,6 +17,7 @@ export const useCompanyData = (pageSize = 5) => {
 
   const handleClickMyCompany = () => {
     setSelectMyCompany(selectedCompanies[0]);
+    // return setSelectMyCompany();
   };
 
   const fetchCompanies = async () => {
@@ -45,7 +46,10 @@ export const useCompanyData = (pageSize = 5) => {
 
   useEffect(() => {
     fetchCompanies();
-  }, [pagination.currentPage, searchKeyword]);
+  }, [pagination.currentPage]);
+  useEffect(() => {
+    fetchCompanies();
+  }, []);
 
   const handlePageChange = (newPage) => {
     setPagination((prev) => {

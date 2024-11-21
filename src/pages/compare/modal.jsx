@@ -5,6 +5,8 @@ import SearchBox from "../../shared/components/SearchComponenet";
 import styles from "./modal.module.css";
 import "./custom.css";
 
+//ㅇㅣ거 이제 안 쓰는 것 같은데
+
 function CompanyBox({
   name,
   category,
@@ -32,7 +34,6 @@ function CompanyBox({
   );
 }
 
-// 여기서 +버튼 있는곳으로 선택 후 이동
 export function MyModal({
   closeModal,
   setPagenumber,

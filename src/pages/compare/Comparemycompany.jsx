@@ -1,7 +1,9 @@
 import { SelectCompanyModal } from "./SelectCompanyModal";
 import { CompareCompanyModal } from "./CompareCompanyModal";
 import { useCompanyData } from "./useCompanyData";
+import { CompareModal } from "./modal";
 import { useState } from "react";
+import { CompanyBox } from "./CompanyBox";
 import styles from "./modal.module.css";
 import "./custom.css";
 import "./comparemycompany.css";
@@ -34,7 +36,6 @@ export function CompareMyCompany() {
   const handleConfirm = () => {
     // 선택 확인 로직
     handleClickMyCompany();
-    // handleModalClose();
   };
 
   const buttonStyles = {
@@ -47,6 +48,7 @@ export function CompareMyCompany() {
   return (
     <>
       {modalType === MODAL_TYPES.SELECT && (
+        // <CompareModal />
         <SelectCompanyModal
           onClose={handleModalClose}
           handleConfirm={handleConfirm}
@@ -58,6 +60,7 @@ export function CompareMyCompany() {
           setSearchKeyword={setSearchKeyword}
           setCompanies={setCompanies}
           fetchCompanies={fetchCompanies}
+          handlePageChange={handlePageChange}
         />
       )}
 
@@ -83,30 +86,29 @@ export function CompareMyCompany() {
         </header>
 
         <section className="company-list">
-          <button
-            className="add-button"
-            onClick={() => handleModalOpen(MODAL_TYPES.SELECT)}
-          >
-            <img src="/img/btn_plus.png" alt="기업 추가" />
-          </button>
+          {selectMyCompany ? null : (
+            <>
+              <button
+                className="add-button"
+                onClick={() => handleModalOpen(MODAL_TYPES.SELECT)}
+              >
+                <img src="/img/btn_plus.png" alt="기업 추가" />
+              </button>
+              <span className="add-button-text">기업 추가</span>
+            </>
+          )}
 
           {selectMyCompany && (
-            <div className={styles.company_box}>
+            <div className={styles.selected_company}>
               <div className={styles.left}>
-                <div className={styles.img_box}>
+                <div className={styles.selected_img_box}>
                   <img src="" alt="" />
                 </div>
                 <span>{selectMyCompany.name}</span>
                 <p>{selectMyCompany.category.category}</p>
               </div>
-              <button style={buttonStyles} onClick={handleCompanySelect}>
-                <img src="/img/ic_check.png" alt="selected" />
-                {buttonText}
-              </button>
             </div>
           )}
-
-          <span className="add-button-text">기업 추가</span>
         </section>
 
         <footer className="footer">

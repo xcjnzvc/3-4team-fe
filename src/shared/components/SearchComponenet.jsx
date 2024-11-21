@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { getCompanyApi } from "../api/api";
 import { useState } from "react";
 
-export default function SearchBox({
+export default function SearchComponenet({
   className,
   setCompanies,
   pageNum,
