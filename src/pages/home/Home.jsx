@@ -14,6 +14,16 @@ export function Home() {
     setSortOption(option);
   };
 
+  // 정렬 옵션
+  const sortOptions = [
+    { label: "누적 투자 금액 높은순", value: "actualInvest_desc" },
+    { label: "누적 투자 금액 낮은순", value: "actualInvest_asc" },
+    { label: "매출액 높은순", value: "revenue_desc" },
+    { label: "매출액 낮은순", value: "revenue_asc" },
+    { label: "고용 인원 높은순", value: "employees_desc" },
+    { label: "고용 인원 낮은순", value: "employees_asc" },
+  ];
+
   // 초기 데이터 로드
   useEffect(() => {
     fetch("http://localhost:8000/api/investments")
@@ -55,16 +65,6 @@ export function Home() {
       );
     });
   }, [searchTerm, sortedData]);
-
-  // 정렬 옵션
-  const sortOptions = [
-    { label: "누적 투자 금액 높은순", value: "actualInvest_desc" },
-    { label: "누적 투자 금액 낮은순", value: "actualInvest_asc" },
-    { label: "매출액 높은순", value: "revenue_desc" },
-    { label: "매출액 낮은순", value: "revenue_asc" },
-    { label: "고용 인원 높은순", value: "employees_desc" },
-    { label: "고용 인원 낮은순", value: "employees_asc" },
-  ];
 
   return (
     <div>
