@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./comparemycompany.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export function CompareMyCompany() {
 
