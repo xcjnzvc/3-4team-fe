@@ -63,3 +63,10 @@
     grid-template-columns: 68px 1fr 230px;
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

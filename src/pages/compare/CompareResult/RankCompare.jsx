@@ -1,6 +1,7 @@
 import CustomSelect from '../../../shared/components/CustomSelect';
 import WholeList from '../../home/WholeList';
-import styles from './ResultConfirm.module.css'
+import otherStyle from './ResultConfirm.module.css'
+
 import { useState,useMemo,useEffect } from 'react';
 
 export default function RankCompare() {
@@ -49,9 +50,9 @@ export default function RankCompare() {
   }, [sortOption, data]);
   
   return (
-    <div className={styles.container}>
-      <div className={styles.resultConfirm}>
-        <h1 className={styles.header_title}>비교 결과 확인하기</h1>
+    <div className={otherStyle.container}>
+      <div className={otherStyle.resultConfirm}>
+        <h1 className={otherStyle.header_title}>기업 순위 확인하기</h1>
         <CustomSelect
           options={sortOptions}
           onOptionChange={handleSortOptionChange}

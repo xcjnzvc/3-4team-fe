@@ -21,12 +21,17 @@
   line-height: 23.87px;
 }
 
-.mySelected > button {
+.styledButton {
+  display: inline-block;
   width: 167px;
   height: 40px;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
   border-radius: 50px;
   background-color: #EB5230;
   color: #ffffff;
+  text-decoration: none; /* 기본 밑줄 제거 */
   cursor: pointer;
 }
 
