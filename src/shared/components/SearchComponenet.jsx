@@ -10,13 +10,15 @@ export default function SearchComponenet({
   fetchCompanies,
   searchKeyword,
   setSearchKeyword,
+  setTriger,
 }) {
   const searchHandle = (e) => {
     // 값이 변할때마다 api 가져옴
     setSearchKeyword(e.target.value);
     // console.log("키워드", keyword());
     // console.log("숫자", e.target.value);
-    fetchCompanies();
+    // fetchCompanies();
+    setTriger(true);
   };
 
   const enterEvent = (e) => {

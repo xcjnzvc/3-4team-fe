@@ -36,6 +36,7 @@ export function CompareMyCompany() {
   const handleConfirm = () => {
     // 선택 확인 로직
     handleClickMyCompany();
+    handleModalClose();
   };
 
   const buttonStyles = {

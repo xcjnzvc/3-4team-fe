@@ -44,12 +44,12 @@ export const useCompanyData = (pageSize = 5) => {
     }
   };
 
-  useEffect(() => {
-    fetchCompanies();
-  }, [pagination.currentPage]);
-  useEffect(() => {
-    fetchCompanies();
-  }, []);
+  // useEffect(() => {
+  //   fetchCompanies();
+  // }, [pagination.currentPage]);
+  // useEffect(() => {
+  //   fetchCompanies();
+  // }, []);
 
   const handlePageChange = (newPage) => {
     setPagination((prev) => {
