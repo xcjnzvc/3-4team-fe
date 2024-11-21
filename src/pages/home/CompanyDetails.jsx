@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./CompanyDetails.module.css";
+import UserInvestList from "../Investment/UserInvestList";
 
 function CompanyDetails() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ function CompanyDetails() {
     fetch(`http://localhost:8000/api/companies/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data); // 받아온 데이터 확인
+        // console.log("Fetched data:", data); // 받아온 데이터 확인
         setData(data);
       });
   }, [id]);
@@ -72,9 +73,7 @@ function CompanyDetails() {
         <div className={styles.goInvest}>기업투자하기</div>
       </div>
       <div className={styles.userInvest}>
-        <div className={styles.totalSimIvest}>
-          총 {data.simInvest / 100000000}억 원
-        </div>
+        <UserInvestList companyData={data} />
       </div>
     </>
   );
