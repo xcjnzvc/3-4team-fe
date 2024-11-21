@@ -1,5 +1,19 @@
+@media (min-width: 300px) {
+  CompareMyCompany {
+    font-size: 70px;
+  }
+}
+
 .header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 150px;
+}
+
+.inquiry-header {
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-title {
@@ -11,6 +25,22 @@
   line-height: 23.87px;
   top: 140px;
   margin-bottom: 40px;
+}
+
+.cancel-selection-btn {
+  position: relative;
+  font-family: pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+  top: 225px;
+  margin-right: 15px;
+  cursor: pointer;
+  color: #d8d8d8;
+}
+
+.cancel-selection-btn:hover {
+  color: #fff;
 }
 
 .company-list {
@@ -46,6 +76,74 @@
   line-height: 21.48px;
   text-align: center;
   color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  height: 300px;
+  background-color: #212121;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.add-company-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.add-button-text {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.48px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.inquiry-add-button {
+  position: relative;
+  font-family: pretendard;
+  border-radius: 50px;
+  background-color: #eb5230;
+  cursor: pointer;
+  padding: 8px 24px;
+  color: #fff;
+  border: 0px;
+  justify-content: space-between;
+  top: 140px;
+  height: 40px;
+}
+
+.inquiry-add-button:hover {
+  background-color: #e64a19;
+  color: #fff;
+  text-decoration: underline;
+}
+
+.inquiry-add-button-text {
+  font-family: pretendard;
+  font-weight: 400;
+  font-size: 14px;
+  color: #747474;
+  text-align: center;
+  line-height: 16.71px;
 }
 
 .footer {
