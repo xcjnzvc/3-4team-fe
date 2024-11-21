@@ -1,0 +1,19 @@
+import { Link } from "react-router-dom";
+import styles from "./MySelected.module.css";
+
+export default function MySelected() {
+  return (
+    <div className={styles.container}>
+      <div className={styles.mySelected}>
+        <h1 className={styles.header_title}>내가 선택한 기업</h1>
+          <Link to="/compare" className={styles.styledButton}>다른 기업 비교하기</Link>
+      </div>
+
+      <section className={styles.company_list}>
+        <img src="/img/companyLogo/codeit.png" alt="내가 선택한 기업 이미지" />
+        <p>코드잇</p>
+        <p>에듀테크</p>
+      </section>
+    </div>
+  );
+}
