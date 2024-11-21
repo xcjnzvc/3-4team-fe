@@ -2,11 +2,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import styles from "./InvestmentOverview.module.css";
 import CustomSelect from "../../shared/components/CustomSelect";
 import InvestmentList from "./InvestmentList";
-// import data from "./tempData";
+import SearchBox from "../../shared/components/SearchBox";
 
 function InvestmentOverview() {
   const [sortOption, setSortOption] = useState("simInvest_desc");
-  const [data, setData] = useState([]); // 백엔드에서 가져온 데이터를 저장할 상태
+  const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSortOptionChange = (option) => {
     setSortOption(option);
@@ -47,17 +48,36 @@ function InvestmentOverview() {
     });
   }, [sortOption, data]); //useEffect 비동기 호출으로 인해 data 추가
 
+  // 검색어를 적용한 필터링된 데이터
+  const filteredData = useMemo(() => {
+    const searchText = searchTerm.toLowerCase();
+    return sortedData.filter((item) => {
+      return (
+        item.name.toLowerCase().includes(searchText) ||
+        item.description.toLowerCase().includes(searchText) ||
+        item.category.category.toLowerCase().includes(searchText)
+      );
+    });
+  }, [searchTerm, sortedData]);
+
   return (
     <div>
       <div className={styles.titleBar}>
         <div className={styles.title}>투자 현황</div>
+        <div className={styles.search_box}>
+          <SearchBox
+            onSearchChange={setSearchTerm}
+            debounceTime={300}
+            placeholder="검색어를 입력하세요"
+          />
+        </div>
         <CustomSelect
           options={sortOptions} // options을 상위에서 전달
           onOptionChange={handleSortOptionChange}
           selectedOption={sortOption}
         />
       </div>
-      <InvestmentList data={sortedData} />
+      <InvestmentList data={filteredData} />
     </div>
   );
 }

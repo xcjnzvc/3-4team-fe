@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "./comparemycompany.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./comparemycompany.css";
 
 export function CompareMyCompany() {
+
   const [isCompanyAdded, setIsCompanyAdded] = useState(false); // 상태 추가
   const navigate = useNavigate();
 
@@ -17,6 +19,7 @@ export function CompareMyCompany() {
 
   function handleCompare() {
     navigate("/compareResult"); // 페이지 이동
+
   }
 
   return (
@@ -82,14 +85,6 @@ export function CompareMyCompany() {
     </section>
     </div>) : null}
 
-    
-
-
-    {/* <footer class="footer">
-      <button class="compare-button">
-        <span class="compare-button-text">기업 비교하기</span>
-      </button>
-    </footer> */}
     <footer className="footer">
         <button
           className="compare-button"
