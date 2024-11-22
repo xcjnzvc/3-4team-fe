@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./CompanyDetails.module.css";
 import UserInvestList from "../Investment/UserInvestList";
+import InvestmentButton from "./../Investment/InvestmentButton/InvestmentButton";
 
 function CompanyDetails() {
   const { id } = useParams();
@@ -70,7 +71,8 @@ function CompanyDetails() {
       </div>
       <div className={styles.investBar}>
         <div>View My Startup에서 받은 투자</div>
-        <div className={styles.goInvest}>기업투자하기</div>
+        <InvestmentButton>기업투자하기</InvestmentButton>
+        {/* <div className={styles.goInvest}>기업투자하기</div> */}
       </div>
       <div className={styles.userInvest}>
         <UserInvestList companyData={data} />
