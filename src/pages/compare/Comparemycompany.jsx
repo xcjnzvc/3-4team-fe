@@ -101,6 +101,14 @@ export function CompareMyCompany() {
       <div className="container">
         <header className="header">
           <h1 className="header-title">나의 기업을 선택해 주세요!</h1>
+          {isCompanyAdded && (
+          <p
+            className="cancel-selection-btn"
+            onClick={handleRemoveCompany}
+          >
+            선택 취소
+          </p>
+        )}
         </header>
 
         {/* <section className="company-list">
@@ -151,6 +159,7 @@ export function CompareMyCompany() {
             //     className="company-logo"
             //   />
             // </div>
+
             // 기업이 추가되지 않은 경우의 화면
             <div className="add-company-container">
               <button
