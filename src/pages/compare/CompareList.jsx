@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./CompareList.module.css";
 import Pagination from "../../shared/components/Pagination";
 
@@ -27,21 +28,23 @@ function CompareList({ data }) {
           <div>비교 기업 선택 횟수</div>
         </div>
         {currentItems.map((item, index) => (
-          <div className={styles.row} key={index}>
-            <div>{offset + index + 1}위</div>
-            <div className={styles.leftAlign}>
-              <img
-                src={item.logo || "img/companyLogo/codeit.png"}
-                alt={`${item.name} 로고`}
-                className={styles.companyLogo}
-              />
-              {item.name}
+          <Link to={`/company/${item.id}`} key={index} className={styles.row}>
+            <div className={styles.row}>
+              <div>{offset + index + 1}위</div>
+              <div className={styles.leftAlign}>
+                <img
+                  src={item.logo || "img/companyLogo/codeit.png"}
+                  alt={`${item.name} 로고`}
+                  className={styles.companyLogo}
+                />
+                {item.name}
+              </div>
+              <div className={styles.description}>{item.description}</div>
+              <div>{item.category.category}</div>
+              <div>{item.myCount}</div>
+              <div>{item.compareCount}</div>
             </div>
-            <div className={styles.description}>{item.description}</div>
-            <div>{item.category.category}</div>
-            <div>{item.myCount}</div>
-            <div>{item.compareCount}</div>
-          </div>
+          </Link>
         ))}
       </div>
       <Pagination
