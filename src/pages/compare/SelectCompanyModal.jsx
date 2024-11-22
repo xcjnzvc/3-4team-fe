@@ -3,6 +3,7 @@ import SearchComponenet from "../../shared/components/SearchComponenet";
 import { SmallPagenation } from "./smallPagenation";
 import { CompanyBox } from "./CompanyBox";
 import "./custom.css";
+import { useState } from "react";
 
 export const SelectCompanyModal = ({
   onClose,
@@ -17,6 +18,7 @@ export const SelectCompanyModal = ({
   fetchCompanies,
   handlePageChange,
 }) => {
+  const [triger, setTriget] = useState(false);
   return (
     <div className={styles.modal_bg}>
       <div className={styles.m_inner}>
@@ -33,9 +35,10 @@ export const SelectCompanyModal = ({
           fetchCompanies={fetchCompanies}
           setSearchKeyword={setSearchKeyword}
           searchKeyword={searchKeyword}
+          setTriger={setTriget}
         />
         <div className={styles.select_company}>
-          {searchKeyword === "" ? (
+          {!triger ? (
             <p className={styles.select_text}>기업을 검색해주세요</p>
           ) : (
             <>
