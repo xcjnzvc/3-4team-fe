@@ -6,7 +6,6 @@ import Pagination from "../../shared/components/Pagination";
 const UserInvestList = ({ companyData }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [selectedItemId, setSelectedItemId] = useState(null); // 선택된 항목의 ID 저장
 
   useEffect(() => {
@@ -29,9 +28,6 @@ const UserInvestList = ({ companyData }) => {
   };
 
   const handleMenuToggle = (e, itemId) => {
-    const rect = e.currentTarget.getBoundingClientRect(); // 버튼 위치 계산
-    setMenuPosition({ top: rect.bottom, left: rect.left });
-
     if (selectedItemId === itemId) {
       // 이미 선택된 메뉴를 다시 클릭하면 닫기
       setSelectedItemId(null);
