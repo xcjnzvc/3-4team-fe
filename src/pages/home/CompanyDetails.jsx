@@ -71,8 +71,7 @@ function CompanyDetails() {
       </div>
       <div className={styles.investBar}>
         <div>View My Startup에서 받은 투자</div>
-        <InvestmentButton id = {id}>기업투자하기</InvestmentButton>
-        {/* <div className={styles.goInvest}>기업투자하기</div> */}
+        <InvestmentButton id={id}>기업투자하기</InvestmentButton>
       </div>
       <div className={styles.userInvest}>
         <UserInvestList companyData={data} />
