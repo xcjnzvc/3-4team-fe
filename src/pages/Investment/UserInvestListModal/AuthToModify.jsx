@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import styles from "./UserInvestDeleteModal.module.css";
+import styles from "./AuthToModify.module.css";
 
-const UserInvestDeleteModal = ({ onClose, onConfirm }) => {
+const AuthToModify = ({ onClose, onConfirm }) => {
   const [password, setPassword] = useState(""); // 비밀번호 상태 추가
   const handlePasswordChange = (e) => {
     setPassword(e.target.value); // 비밀번호 상태 업데이트
@@ -13,7 +13,7 @@ const UserInvestDeleteModal = ({ onClose, onConfirm }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
-        <div className={styles.title}>삭제 권한 인증</div>
+        <div className={styles.title}>수정 권한 인증</div>
         <p className={styles.label}>비밀번호</p>
         <input
           type="password"
@@ -25,12 +25,12 @@ const UserInvestDeleteModal = ({ onClose, onConfirm }) => {
         <button onClick={onClose} className={styles.closeModal}>
           창 닫기
         </button>
-        <button onClick={handleConfirmClick} className={styles.deleteButton}>
-          삭제하기
+        <button onClick={handleConfirmClick} className={styles.modifyButton}>
+          수정하기
         </button>
       </div>
     </div>
   );
 };
 
-export default UserInvestDeleteModal;
+export default AuthToModify;
