@@ -1,7 +1,8 @@
 import styles from "./investmentModal.module.css";
 import { useState } from "react";
+import axios from "axios";
 
-export default function InvestmentModal({ closeModal }) {
+export default function InvestmentModal({ closeModal, id, data }) {
   const [formData, setFormData] = useState({
     investorName: "",
     investmentAmount: "",
@@ -15,7 +16,13 @@ export default function InvestmentModal({ closeModal }) {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -23,8 +30,30 @@ export default function InvestmentModal({ closeModal }) {
       return;
     }
 
-    console.log("Form Data:", formData);
-    alert("투자 정보가 제출되었습니다!");
+    const postData = {
+      startUpId: Number(id),
+      name: formData.investorName,
+      investAmount: Number(formData.investmentAmount),
+      comment: formData.investmentComment,
+      password: formData.confirmPassword,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/investments",
+        postData
+      );
+      if (response.status == 200 || response.status == 201) {
+        alert("투자 성공!");
+        closeModal();
+        // window.location.reload();
+      } else {
+        alert("투자 실패");
+      }
+    } catch (error) {
+      console.error("에러 발생", error);
+      alert("통신 오류 발생");
+    }
   };
 
   return (
@@ -34,10 +63,20 @@ export default function InvestmentModal({ closeModal }) {
 
         <div className={styles.modal__elem}>
           <label>투자 기업 정보</label>
-          <div>기업 정보 나타낼 부분</div>
+          <div className={styles.companyInfo}>
+            <img
+              src={data.logo || "/img/companyLogo/codeit.png"}
+              alt={`${data.name} 로고`}
+              className={styles.companyLogo}
+            />
+            <p className={styles.title}>{data.name}</p>
+            <p className={styles.subTitle}>
+              {data.category ? data.category.category : "정보 없음"}
+            </p>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form onKeyDown={handleKeyDown} className={styles.form}>
           <div className={styles.modal__elem}>
             <label htmlFor="investorName">투자자 이름</label>
             <input
@@ -48,7 +87,7 @@ export default function InvestmentModal({ closeModal }) {
               onChange={handleChange}
               required
               placeholder="투자자 이름을 입력해 주세요"
-              autoComplete="username"
+              autoComplete="off"
             />
           </div>
 
@@ -114,7 +153,10 @@ export default function InvestmentModal({ closeModal }) {
             >
               취소
             </button>
-            <button className={styles.investButton}>투자하기</button>
+
+            <button className={styles.investButton} onClick={handleSubmit}>
+              투자하기
+            </button>
           </div>
         </form>
       </div>

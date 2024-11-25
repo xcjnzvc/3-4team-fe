@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .modal {
@@ -19,6 +20,7 @@
   gap: 24px;
   border-radius: 16px;
   padding: 24px;
+  z-index: 1000;
 }
 
 .form {
@@ -27,8 +29,9 @@
   gap: 24px;
 }
 
-.modal h1, label {
-  color: #FFFFFF;
+.modal h1,
+label {
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -37,10 +40,45 @@
   line-height: 23.87px;
 }
 
+.companyInfo {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.companyLogo {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #747474;
+}
+
 .modal__elem {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.modal__elem > input[type="number"]::-webkit-outer-spin-button,
+.modal__elem > input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.modal__elem > input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .modal label {
@@ -48,7 +86,8 @@
   line-height: 21.48px;
 }
 
-.modal input, textarea{
+.modal input,
+textarea {
   width: 447px;
   height: 48px;
   border-radius: 10px;
@@ -83,18 +122,18 @@
 }
 
 .cancelButton {
-  border: solid 1px #EB5230;
+  border: solid 1px #eb5230;
   background-color: #212121;
   font-size: 18px;
   font-weight: 600;
-  color: #EB5230;
+  color: #eb5230;
   line-height: 21.48px;
   text-align: center;
 }
 
 .investButton {
-  background-color: #EB5230;
-  color: #FFFFFF;
+  background-color: #eb5230;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
   line-height: 19.09px;
