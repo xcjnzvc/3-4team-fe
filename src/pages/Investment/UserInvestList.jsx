@@ -63,31 +63,31 @@ const UserInvestList = ({ companyData }) => {
 
   const handleDeletedModalClose = () => {
     setIsDeletedModalOpen(false); // 모달 닫기
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleDeleteConfirm = async (password) => {
     if (!itemToDelete) return;
-
+  
     try {
       const response = await fetch(
         `http://localhost:8000/api/investments/${itemToDelete}`,
         {
           method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password }), // 비밀번호를 body에 포함
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password }),
         }
       );
-
+  
       if (response.ok) {
+        // 서버에서 삭제 성공 시, 클라이언트 측 데이터 갱신
+        setData((prevData) =>
+          prevData.filter((item) => item.id !== itemToDelete)
+        );
         setIsDeletedModalOpen(true);
-        // alert("삭제가 완료되었습니다.");
       } else {
         const errorData = await response.json();
         setIsErrorModalOpen(true);
-        // alert(`삭제 실패: ${errorData.message}`);
       }
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
@@ -98,6 +98,7 @@ const UserInvestList = ({ companyData }) => {
       setItemToDelete(null);
     }
   };
+  
 
   return (
     <>
