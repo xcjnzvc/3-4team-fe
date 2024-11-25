@@ -2,7 +2,7 @@ import styles from "./investmentModal.module.css";
 import { useState } from "react";
 import axios from "axios";
 
-export default function InvestmentModal({ closeModal, id }) {
+export default function InvestmentModal({ closeModal, id, data }) {
   const [formData, setFormData] = useState({
     investorName: "",
     investmentAmount: "",
@@ -46,6 +46,7 @@ export default function InvestmentModal({ closeModal, id }) {
       if (response.status == 200 || response.status == 201) {
         alert("투자 성공!");
         closeModal();
+        // window.location.reload();
       } else {
         alert("투자 실패");
       }
@@ -62,7 +63,17 @@ export default function InvestmentModal({ closeModal, id }) {
 
         <div className={styles.modal__elem}>
           <label>투자 기업 정보</label>
-          <div>기업 정보 나타낼 부분</div>
+          <div className={styles.companyInfo}>
+            <img
+              src={data.logo || "/img/companyLogo/codeit.png"}
+              alt={`${data.name} 로고`}
+              className={styles.companyLogo}
+            />
+            <p className={styles.title}>{data.name}</p>
+            <p className={styles.subTitle}>
+              {data.category ? data.category.category : "정보 없음"}
+            </p>
+          </div>
         </div>
 
         <form onKeyDown={handleKeyDown} className={styles.form}>
@@ -76,7 +87,7 @@ export default function InvestmentModal({ closeModal, id }) {
               onChange={handleChange}
               required
               placeholder="투자자 이름을 입력해 주세요"
-              autoComplete="username"
+              autoComplete="off"
             />
           </div>
 
