@@ -42,6 +42,24 @@
   border-radius: 50%;
 }
 
+.circleLogo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 30px;
+  margin-left: 24px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0.5px solid #ffffff;
+  color: #000000c5;
+  box-sizing: border-box;
+}
+
 .row .description {
   padding: 0 16px;
   text-align: left;

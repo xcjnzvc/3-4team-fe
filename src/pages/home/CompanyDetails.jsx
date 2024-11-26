@@ -21,11 +21,12 @@ function CompanyDetails() {
   return (
     <>
       <div className={styles.titleBar}>
-        <img
+        {/* <img
           src={data.logo || "/img/companyLogo/codeit.png"}
           alt={`${data.name} 로고`}
           className={styles.companyLogo}
-        />
+        /> */}
+        <span className={styles.circleLogo}>{data.name}</span>
         <div className={styles.titleBox}>
           <p className={styles.title}>{data.name}</p>
           <p className={styles.subTitle}>

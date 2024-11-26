@@ -1,11 +1,12 @@
 import React from "react";
-import styles from "./ErrorModal.module.css";
+import styles from "./ErrorModifyModal.module.css";
 
-function ErrorModal({ onClose }) {
+function ErrorModifyModal({ onClose }) {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
-        <p className={styles.text}>잘못된 비밀번호로 삭제에 실패하셨습니다.</p>
+        <div className={styles.title}>수정 권한 인증</div>
+        <p className={styles.label}>잘못된 비밀번호로 수정에 실패하셨습니다.</p>
         <button onClick={onClose} className={styles.closeModal}>
           창 닫기
         </button>
@@ -17,4 +18,4 @@ function ErrorModal({ onClose }) {
   );
 }
 
-export default ErrorModal;
+export default ErrorModifyModal;
