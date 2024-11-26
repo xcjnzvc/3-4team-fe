@@ -20,6 +20,8 @@ export const CompareCompanyModal = ({
   setAaa,
   setBbb,
   fetchCompanies,
+  clickabc,
+  clickcba,
 }) => {
   return (
     <div className={styles.modal_bg}>
@@ -50,7 +52,8 @@ export const CompareCompanyModal = ({
                 key={company.id}
                 {...company}
                 variant="deselect"
-                onClick={() => onDeselectCompany(company)}
+                // onClick={() => onDeselectCompany(company)}
+                onClick={() => clickcba(company)}
               />
             ))
           )}
@@ -65,7 +68,7 @@ export const CompareCompanyModal = ({
               <CompanyBox
                 key={company.id}
                 {...company}
-                onClick={() => onSelectCompany(company)}
+                onClick={() => clickabc(company)}
               />
             );
           })}

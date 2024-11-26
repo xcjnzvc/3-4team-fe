@@ -34,6 +34,7 @@ export function CompareMyCompany() {
     bbb,
     setAaa,
     setBbb,
+    clickabc,
   } = useCompanyData();
 
   const handleModalOpen = (type) => setModalType(type);
@@ -101,6 +102,8 @@ export function CompareMyCompany() {
           setSearchKeyword={setSearchKeyword}
           aaa={aaa}
           bbb={bbb}
+          clickabc={clickabc}
+          clickcba={clickabc}
         />
       )}
 
@@ -108,13 +111,10 @@ export function CompareMyCompany() {
         <div className="company-selection-container">
           <h1 className="header-title">나의 기업을 선택해 주세요!</h1>
           {isCompanyAdded && (
-          <p
-            className="cancel-selection-btn"
-            onClick={handleRemoveCompany}
-          >
-            선택 취소
-          </p>
-        )}
+            <p className="cancel-selection-btn" onClick={handleRemoveCompany}>
+              선택 취소
+            </p>
+          )}
         </div>
 
         {/* <section className="company-list">
