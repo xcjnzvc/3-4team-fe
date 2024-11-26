@@ -85,7 +85,7 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
 
   const handleDeleteConfirm = async (password) => {
     if (!itemToDelete) return;
-
+  
     try {
       const response = await fetch(
         `http://localhost:8000/api/investments/${itemToDelete}`,
@@ -95,22 +95,26 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
           body: JSON.stringify({ password }),
         }
       );
-
+  
       if (response.ok) {
-        setIsDeletedModalOpen(true);
+        setData((prevData) =>
+          prevData.filter((item) => item.id !== itemToDelete)
+        );
+        setIsDeletedModalOpen(true); 
       } else {
         const errorData = await response.json();
-        setIsErrorDeleteModalOpen(true);
+        setIsErrorDeleteModalOpen(true); 
       }
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
       alert("삭제 요청 중 문제가 발생했습니다.");
     } finally {
       setSelectedItemId(null);
-      setIsToDeleteModalOpen(false);
+      setIsToDeleteModalOpen(false); // 삭제 모달 닫기
       setItemToDelete(null);
     }
   };
+  
 
   const handleAuthConfirm = (password) => {
     fetch("http://localhost:8000/api/investments/verify-password", {
@@ -222,6 +226,11 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
             {isModifiedModalOpen && (
               <ModifiedModal onClose={handleModifiedModalClose} />
             )}
+            {
+              isDeletedModalOpen && (
+                <DeletedModal onClose={handleDeletedModalClose} />
+              )
+            }
           </div>
           <Pagination
             totalPages={totalPages}
