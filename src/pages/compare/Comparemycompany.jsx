@@ -8,6 +8,7 @@ import { CompanyBox } from "./CompanyBox";
 import styles from "./modal.module.css";
 import "./custom.css";
 import "./comparemycompany.css";
+import { Link } from "react-router-dom";
 
 export const MODAL_TYPES = {
   SELECT: "SELECT",
@@ -29,6 +30,10 @@ export function CompareMyCompany() {
     selectMyCompany,
     handleClickMyCompany,
     setSelectMyCompany,
+    aaa,
+    bbb,
+    setAaa,
+    setBbb,
   } = useCompanyData();
 
   const handleModalOpen = (type) => setModalType(type);
@@ -66,7 +71,6 @@ export function CompareMyCompany() {
   return (
     <>
       {modalType === MODAL_TYPES.SELECT && (
-        // <CompareModal />
         <SelectCompanyModal
           onClose={handleModalClose}
           handleConfirm={handleConfirm}
@@ -95,6 +99,8 @@ export function CompareMyCompany() {
           setCompanies={setCompanies}
           fetchCompanies={fetchCompanies}
           setSearchKeyword={setSearchKeyword}
+          aaa={aaa}
+          bbb={bbb}
         />
       )}
 
@@ -168,7 +174,12 @@ export function CompareMyCompany() {
           <div>
             <header class="inquiry-header">
               <h1 class="header-title">어떤 기업이 궁금하세요?</h1>
-              <button class="inquiry-add-button">기업 추가하기</button>
+              <button
+                class="inquiry-add-button"
+                onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
+              >
+                기업 추가하기
+              </button>
             </header>
 
             <section class="company-list">
@@ -185,7 +196,9 @@ export function CompareMyCompany() {
             className="compare-button"
             // onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
           >
-            <span className="compare-button-text">기업 비교하기</span>
+            <Link className="compare-button-text" to="/compareResult">
+              기업 비교하기
+            </Link>
           </button>
         </footer>
       </div>

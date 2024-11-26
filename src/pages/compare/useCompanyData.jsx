@@ -3,6 +3,8 @@ import { getCompanyApi } from "../../shared/api/api";
 // 잠시만요 ㅠ
 export const useCompanyData = (pageSize = 5) => {
   const [companies, setCompanies] = useState([]);
+  const [aaa, setAaa] = useState([]);
+  const [bbb, setBbb] = useState([]);
   const [pagination, setPagination] = useState({
     currentPage: 1,
     totalPages: 0,
@@ -27,6 +29,7 @@ export const useCompanyData = (pageSize = 5) => {
         pagination.currentPage - 1,
         searchKeyword
       );
+      setBbb(response.data);
       const updatedCompanies = response.data.map((company) => ({
         ...company,
         isSelected: selectedCompanies.some(
@@ -34,6 +37,8 @@ export const useCompanyData = (pageSize = 5) => {
         ),
       }));
       setCompanies(updatedCompanies);
+      console.log("원래꺼", companies);
+
       setPagination((prev) => ({
         ...prev,
         totalPages: Math.max(1, Math.ceil(response.totalCount / pageSize)),
@@ -44,6 +49,7 @@ export const useCompanyData = (pageSize = 5) => {
     }
   };
 
+  //이거 뭔데 켜면 다 뜨는거냐?
   // useEffect(() => {
   //   fetchCompanies();
   // }, [pagination.currentPage]);
@@ -84,10 +90,27 @@ export const useCompanyData = (pageSize = 5) => {
         c.id === company.id ? { ...c, isSelected: !c.isSelected } : c
       )
     );
+
+    // setBbb((prev) =>
+    //   prev.map((c) => {
+    //     //추가하거나 바꾸고싶은게 있으면 이런코드 객체안에서
+    //     const result =
+    //       c.id === aaa.id
+    //         ? {
+    //             ...c,
+    //             isSelected: !c.isSelected,
+    //           }
+    //         : c;
+    //     // console.log(result);
+    //     return result;
+    //   })
+    // );
   };
 
   return {
     companies,
+    aaa,
+    bbb,
     pagination,
     searchKeyword,
     selectedCompanies,
@@ -95,6 +118,9 @@ export const useCompanyData = (pageSize = 5) => {
     handleCompanySelect,
     setSearchKeyword,
     setCompanies,
+    setSelectedCompanies,
+    setAaa,
+    setBbb,
     fetchCompanies,
     handleClickMyCompany,
     selectMyCompany,

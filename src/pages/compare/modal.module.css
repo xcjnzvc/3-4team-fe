@@ -209,3 +209,15 @@
 .selected_company .left > p {
   margin-left: 0;
 }
+
+.ok_bt {
+  width: 140px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  position: absolute;
+  left: 35%;
+  bottom: 0;
+}
