@@ -16,6 +16,10 @@ function InvestmentList({ data }) {
     setOffset(newOffset);
   };
 
+  function getRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+
   return (
     <div>
       <div className={styles.table}>
@@ -27,25 +31,34 @@ function InvestmentList({ data }) {
           <div>View My Startup 투자 금액</div>
           <div>실제 누적 투자 금액</div>
         </div>
-        {currentItems.map((item, index) => (
-          <Link to={`/company/${item.id}`} key={index} className={styles.row}>
-            <div className={styles.row} key={index}>
-              <div>{offset + index + 1}위</div>
-              <div className={styles.leftAlign}>
-                <img
-                  src={item.logo || "img/companyLogo/codeit.png"}
-                  alt={`${item.name} 로고`}
-                  className={styles.companyLogo}
-                />
-                {item.name}
+        {currentItems.map((item, index) => {
+          const randomColor = getRandomColor();
+          return (
+            <Link to={`/company/${item.id}`} key={index} className={styles.row}>
+              <div className={styles.row} key={index}>
+                <div>{offset + index + 1}위</div>
+                <div className={styles.leftAlign}>
+                  {/* <img
+            src={item.logo || "img/companyLogo/codeit.png"}
+            alt={`${item.name} 로고`}
+            className={styles.companyLogo}
+          /> */}
+                  <span
+                    className={styles.circleLogo}
+                    style={{ backgroundColor: randomColor }}
+                  >
+                    {item.name.charAt(0)}
+                  </span>
+                  {item.name}
+                </div>
+                <div className={styles.description}>{item.description}</div>
+                <div>{item.category.category}</div>
+                <div>{item.simInvest / 100000000}억 원</div>
+                <div>{item.actualInvest / 100000000}억 원</div>
               </div>
-              <div className={styles.description}>{item.description}</div>
-              <div>{item.category.category}</div>
-              <div>{item.simInvest / 100000000}억 원</div>
-              <div>{item.actualInvest / 100000000}억 원</div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
       <Pagination
         totalPages={totalPages}
