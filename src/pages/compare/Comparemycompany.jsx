@@ -8,6 +8,7 @@ import { CompanyBox } from "./CompanyBox";
 import styles from "./modal.module.css";
 import "./custom.css";
 import "./comparemycompany.css";
+import { Link } from "react-router-dom";
 
 export const MODAL_TYPES = {
   SELECT: "SELECT",
@@ -185,7 +186,7 @@ export function CompareMyCompany() {
             className="compare-button"
             // onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
           >
-            <span className="compare-button-text">기업 비교하기</span>
+            <Link className="compare-button-text" to="/compareResult">기업 비교하기</Link>
           </button>
         </footer>
       </div>
