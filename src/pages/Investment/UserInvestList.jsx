@@ -85,7 +85,7 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
 
   const handleDeleteConfirm = async (password) => {
     if (!itemToDelete) return;
-  
+
     try {
       const response = await fetch(
         `http://localhost:8000/api/investments/${itemToDelete}`,
@@ -95,15 +95,15 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
           body: JSON.stringify({ password }),
         }
       );
-  
+
       if (response.ok) {
         setData((prevData) =>
           prevData.filter((item) => item.id !== itemToDelete)
         );
-        setIsDeletedModalOpen(true); 
+        setIsDeletedModalOpen(true);
       } else {
         const errorData = await response.json();
-        setIsErrorDeleteModalOpen(true); 
+        setIsErrorDeleteModalOpen(true);
       }
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
@@ -114,7 +114,6 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
       setItemToDelete(null);
     }
   };
-  
 
   const handleAuthConfirm = (password) => {
     fetch("http://localhost:8000/api/investments/verify-password", {
@@ -226,11 +225,6 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
             {isModifiedModalOpen && (
               <ModifiedModal onClose={handleModifiedModalClose} />
             )}
-            {
-              isDeletedModalOpen && (
-                <DeletedModal onClose={handleDeletedModalClose} />
-              )
-            }
           </div>
           <Pagination
             totalPages={totalPages}
@@ -240,6 +234,7 @@ const UserInvestList = ({ investData, totalSimInvest }) => {
           />
         </div>
       )}
+      {isDeletedModalOpen && <DeletedModal onClose={handleDeletedModalClose} />}
     </>
   );
 };
