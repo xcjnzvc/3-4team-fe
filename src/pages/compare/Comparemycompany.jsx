@@ -34,7 +34,6 @@ export function CompareMyCompany() {
     bbb,
     setAaa,
     setBbb,
-    clickabc,
   } = useCompanyData();
 
   const handleModalOpen = (type) => setModalType(type);
@@ -102,8 +101,6 @@ export function CompareMyCompany() {
           setSearchKeyword={setSearchKeyword}
           aaa={aaa}
           bbb={bbb}
-          clickabc={clickabc}
-          clickcba={clickabc}
         />
       )}
 

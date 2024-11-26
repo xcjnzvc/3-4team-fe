@@ -52,8 +52,7 @@ export const CompareCompanyModal = ({
                 key={company.id}
                 {...company}
                 variant="deselect"
-                // onClick={() => onDeselectCompany(company)}
-                onClick={() => clickcba(company)}
+                onClick={() => onDeselectCompany(company)}
               />
             ))
           )}
@@ -68,7 +67,7 @@ export const CompareCompanyModal = ({
               <CompanyBox
                 key={company.id}
                 {...company}
-                onClick={() => clickabc(company)}
+                onClick={() => onSelectCompany(company)}
               />
             );
           })}

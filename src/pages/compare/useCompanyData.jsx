@@ -5,7 +5,6 @@ export const useCompanyData = (pageSize = 5) => {
   const [companies, setCompanies] = useState([]);
   const [aaa, setAaa] = useState([]);
   const [bbb, setBbb] = useState([]);
-  const [selectAaa, setSelectaaa] = useState([]);
   const [pagination, setPagination] = useState({
     currentPage: 1,
     totalPages: 0,
@@ -30,7 +29,7 @@ export const useCompanyData = (pageSize = 5) => {
         pagination.currentPage - 1,
         searchKeyword
       );
-      // setBbb(response.data);
+      setBbb(response.data);
       const updatedCompanies = response.data.map((company) => ({
         ...company,
         isSelected: selectedCompanies.some(
@@ -38,9 +37,6 @@ export const useCompanyData = (pageSize = 5) => {
         ),
       }));
       setCompanies(updatedCompanies);
-      setBbb(updatedCompanies);
-      // setAaa(updatedCompanies);
-
       console.log("원래꺼", companies);
 
       setPagination((prev) => ({
@@ -53,7 +49,6 @@ export const useCompanyData = (pageSize = 5) => {
     }
   };
 
-  //이거 뭔데 켜면 다 뜨는거냐?
   // useEffect(() => {
   //   fetchCompanies();
   // }, [pagination.currentPage]);
@@ -93,33 +88,6 @@ export const useCompanyData = (pageSize = 5) => {
       prev.map((c) =>
         c.id === company.id ? { ...c, isSelected: !c.isSelected } : c
       )
-    );
-  };
-
-  const clickabc = (company) => {
-    const isAlreadySelected2 = selectAaa.some(
-      (selected) => selected.id === company.id
-    );
-
-    setAaa((prev) =>
-      isAlreadySelected2
-        ? prev.filter((c) => c.id !== company.id)
-        : [...prev, company]
-    );
-
-    setBbb((prev) =>
-      prev.map((c) => {
-        //추가하거나 바꾸고싶은게 있으면 이런코드 객체안에서
-        const result =
-          c.id === aaa.id
-            ? {
-                ...c,
-                isSelected: !c.isSelected,
-              }
-            : c;
-        // console.log(result);
-        return result;
-      })
     );
   };
 
