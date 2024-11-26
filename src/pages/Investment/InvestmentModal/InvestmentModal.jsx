@@ -2,7 +2,7 @@ import styles from "./investmentModal.module.css";
 import { useState } from "react";
 import axios from "axios";
 
-export default function InvestmentModal({ closeModal, id, data }) {
+export default function InvestmentModal({ closeModal, id, data , onSuccess}) {
   const [formData, setFormData] = useState({
     investorName: "",
     investmentAmount: "",
@@ -65,6 +65,7 @@ export default function InvestmentModal({ closeModal, id, data }) {
       );
       if (response.status === 200 || response.status === 201) {
         alert("투자 성공!");
+        onSuccess();
         closeModal();
       } else {
         alert("투자 실패");
