@@ -21,13 +21,14 @@ export default function SearchComponenet({
     // console.log("키워드", keyword());
     // console.log("숫자", e.target.value);
     // fetchCompanies();
-    setTriger(true);
+    // setTriger(true);
   };
 
   const enterEvent = (e) => {
     if (e.keyCode === 13) {
       //   enter 키코드가 13이라 keydown 이벤트를 이용했음
       fetchCompanies();
+      setTriger(true);
     }
   };
 

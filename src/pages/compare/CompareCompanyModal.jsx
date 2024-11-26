@@ -1,14 +1,16 @@
 import { CompanyBox } from "./CompanyBox";
 import { SmallPagenation } from "./smallPagenation";
+import { useState } from "react";
 import SearchBox from "../../shared/components/SearchComponenet";
 import styles from "./modal.module.css";
 import "./custom.css";
+import SearchComponenet from "../../shared/components/SearchComponenet";
 
 export const CompareCompanyModal = ({
   onClose,
   companies,
   aaa,
-  bbb,
+  selectAaa,
   selectedCompanies,
   pagination,
   onSearch,
@@ -18,11 +20,14 @@ export const CompareCompanyModal = ({
   onDeselectCompany,
   setCompanies,
   setAaa,
-  setBbb,
+  setSelectaaa,
   fetchCompanies,
   clickabc,
   clickcba,
+  handleAaa,
 }) => {
+  const [triger, setTriget] = useState(false);
+
   return (
     <div className={styles.modal_bg}>
       <div className={styles.m_inner}>
@@ -31,7 +36,7 @@ export const CompareCompanyModal = ({
           <span onClick={onClose}>x</span>
         </div>
 
-        <SearchBox
+        <SearchComponenet
           className={styles.search_box}
           onSearch={onSearch}
           totalItems={pagination.totalItems}
@@ -40,14 +45,15 @@ export const CompareCompanyModal = ({
           fetchCompanies={fetchCompanies}
           setSearchKeyword={setSearchKeyword}
           searchKeyword={searchKeyword}
+          setTriger={setTriget}
         />
 
         <div className={styles.select_company}>
-          <h3>선택한 기업 ({aaa.length})</h3>
-          {aaa.length === 0 ? (
+          <h3>선택한 기업 ({selectAaa.length})</h3>
+          {selectAaa.length === 0 ? (
             <p className={styles.select_text}>기업을 선택 해주세요</p>
           ) : (
-            aaa.map((company) => (
+            selectAaa.map((company) => (
               <CompanyBox
                 key={company.id}
                 {...company}
@@ -60,18 +66,21 @@ export const CompareCompanyModal = ({
         </div>
 
         <div className={styles.select_company}>
-          <h3>검색 결과 ({bbb.length})</h3>
-
-          {bbb.map((company) => {
-            // console.log("..?", company);
-            return (
-              <CompanyBox
-                key={company.id}
-                {...company}
-                onClick={() => clickabc(company)}
-              />
-            );
-          })}
+          <h3>검색 결과 ({!triger ? 0 : aaa.length})</h3>
+          {!triger ? (
+            <p className={styles.select_text}>기업을 검색해주세요</p>
+          ) : (
+            aaa.map((company) => {
+              // console.log("..?", company);
+              return (
+                <CompanyBox
+                  key={company.id}
+                  {...company}
+                  onClick={() => clickabc(company)}
+                />
+              );
+            })
+          )}
         </div>
 
         <SmallPagenation

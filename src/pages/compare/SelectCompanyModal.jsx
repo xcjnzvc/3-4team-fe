@@ -17,6 +17,10 @@ export const SelectCompanyModal = ({
   setCompanies,
   fetchCompanies,
   handlePageChange,
+  aaa,
+  setAaa,
+  selectAaa,
+  setSelectaaa,
 }) => {
   const [triger, setTriget] = useState(false);
   return (
