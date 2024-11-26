@@ -11,6 +11,5 @@ const axiosInstance = axios.create({
 export async function getCompanyApi(limit, offset, keyword = "") {
   let uri = `/api/companies?limit=${limit}&offset=${offset}&keyword=${keyword}`;
   const respnse = await axiosInstance.get(uri);
-
   return respnse.data;
 }

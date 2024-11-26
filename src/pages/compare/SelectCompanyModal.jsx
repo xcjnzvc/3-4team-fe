@@ -44,7 +44,7 @@ export const SelectCompanyModal = ({
             <>
               <h3>검색 결과 ({pagination.totalItems})</h3>
               {companies.map((company) => {
-                // console.log(company);
+                // console.log("?", company);
                 return (
                   <CompanyBox
                     key={company.id}
@@ -54,7 +54,6 @@ export const SelectCompanyModal = ({
                   />
                 );
               })}
-
               <SmallPagenation
                 currentPage={pagination.currentPage}
                 totalPages={pagination.totalPages}
@@ -62,7 +61,9 @@ export const SelectCompanyModal = ({
                 endPage={pagination.endPage}
                 handlePageChange={handlePageChange}
               />
-              <button onClick={handleConfirm}>확인</button>
+              <button className={styles.ok_bt} onClick={handleConfirm}>
+                확인
+              </button>
             </>
           )}
         </div>

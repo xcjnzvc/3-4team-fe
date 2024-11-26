@@ -30,6 +30,10 @@ export function CompareMyCompany() {
     selectMyCompany,
     handleClickMyCompany,
     setSelectMyCompany,
+    aaa,
+    bbb,
+    setAaa,
+    setBbb,
   } = useCompanyData();
 
   const handleModalOpen = (type) => setModalType(type);
@@ -67,7 +71,6 @@ export function CompareMyCompany() {
   return (
     <>
       {modalType === MODAL_TYPES.SELECT && (
-        // <CompareModal />
         <SelectCompanyModal
           onClose={handleModalClose}
           handleConfirm={handleConfirm}
@@ -96,6 +99,8 @@ export function CompareMyCompany() {
           setCompanies={setCompanies}
           fetchCompanies={fetchCompanies}
           setSearchKeyword={setSearchKeyword}
+          aaa={aaa}
+          bbb={bbb}
         />
       )}
 
