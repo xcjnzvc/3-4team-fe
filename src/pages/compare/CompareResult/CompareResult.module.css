@@ -1,19 +1,8 @@
-@media (max-width: 744px) {
-  .table {
-    width: 269px;
-    height: 48px;
-    background-color: pink;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 .table {
   margin-top: 16px;
   display: grid;
-  /* grid-template-columns: 68px 213px 304px 153px 230px 230px; */
-  grid-template-columns: 0.57fr 1.78fr 2.54fr 1.28fr 1.92fr 1.92fr;
+  /* grid-template-columns: 68px 213px 304px 153px 153px 153px 153px; */
+  grid-template-columns: 1.78fr 2.54fr 1.28fr 1.28fr 1.28fr 1.28fr;
 }
 
 .row {
@@ -53,24 +42,6 @@
   border-radius: 50%;
 }
 
-.circleLogo {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  line-height: 30px;
-  margin-left: 24px;
-  margin-right: 12px;
-  vertical-align: middle;
-  border-radius: 50%;
-  position: relative;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  border: 0.5px solid #ffffff;
-  color: #000000c5;
-  box-sizing: border-box;
-}
-
 .row .description {
   padding: 0 16px;
   text-align: left;
@@ -91,4 +62,11 @@
   .table {
     grid-template-columns: 68px 1fr 230px;
   }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

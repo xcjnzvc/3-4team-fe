@@ -1,0 +1,142 @@
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #212121;
+  width: 496px;
+  height: 858px;
+  gap: 24px;
+  border-radius: 16px;
+  padding: 24px;
+  z-index: 1000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal h1,
+label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.modal h1 {
+  font-size: 20px;
+  line-height: 23.87px;
+}
+
+.companyInfo {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.companyLogo {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #747474;
+}
+
+.modal__elem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal__elem > input[type="number"]::-webkit-outer-spin-button,
+.modal__elem > input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.modal__elem > input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.modal label {
+  font-size: 18px;
+  line-height: 21.48px;
+}
+
+.modal input,
+textarea {
+  width: 447px;
+  height: 48px;
+  border-radius: 10px;
+  border: solid 1px #747474;
+  background-color: #212121;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.71px;
+  color: #747474;
+
+  padding: 16px 20px;
+}
+
+.modal textarea {
+  height: 108px;
+  resize: none;
+}
+
+.modal__buttonList {
+  display: flex;
+  gap: 16px;
+  left: 27.5px;
+  position: relative;
+}
+
+.modal__buttonList button {
+  width: 194px;
+  height: 48px;
+  border-radius: 50px;
+  padding: 13px 48px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  border: solid 1px #eb5230;
+  background-color: #212121;
+  font-size: 18px;
+  font-weight: 600;
+  color: #eb5230;
+  line-height: 21.48px;
+  text-align: center;
+}
+
+.investButton {
+  background-color: #eb5230;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.09px;
+  text-align: center;
+  border: 0;
+}

@@ -1,0 +1,72 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  width: 496px;
+  height: 269px;
+  background: #212121;
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  font-weight: 700;
+  position: relative;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 28px;
+}
+
+.label {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.passwordInput {
+  margin-bottom: 32px;
+  padding-left: 15px;
+  width: 100%;
+  height: 48px;
+  border: 1px solid #4b4b4b;
+  border-radius: 5px;
+  background: #2e2e2e;
+  color: white;
+  font-size: 14px;
+}
+
+.closeModal {
+  width: 32px;
+  height: 32px;
+  font-size: 0;
+  background: url("/public/img/ic_delete.png") no-repeat center / 24px 24px;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+
+.modifyButton {
+  margin: 0 auto;
+  font-size: 16px;
+  width: 194px;
+  height: 48px;
+  padding: 13px 48px 13px 48px;
+  border-radius: 50px;
+  opacity: 0px;
+  background-color: #eb5230;
+  color: white;
+  cursor: pointer;
+  border: none;
+}

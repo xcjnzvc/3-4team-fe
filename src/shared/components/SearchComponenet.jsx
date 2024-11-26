@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+// import { Prisma } from "@prisma/client";
 import { getCompanyApi } from "../api/api";
 import { useState } from "react";
 import styles from "../../pages/compare/modal.module.css";

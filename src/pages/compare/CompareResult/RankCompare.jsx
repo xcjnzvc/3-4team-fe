@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useMemo } from "react";
-import styles from "./Home.module.css";
-import CustomSelect from "../../shared/components/CustomSelect";
-import WholeList from "./WholeList";
-import SearchBox from "../../shared/components/SearchBox";
+import CustomSelect from '../../../shared/components/CustomSelect';
+import WholeList from '../../home/WholeList';
+import otherStyle from './ResultConfirm.module.css'
 
-export function Home() {
+import { useState,useMemo,useEffect } from 'react';
+
+export default function RankCompare() {
   const [sortOption, setSortOption] = useState("actualInvest_desc");
   const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-
-  // 정렬 옵션 변경 핸들러
+  
   const handleSortOptionChange = (option) => {
     setSortOption(option);
   };
 
-  // 정렬 옵션
   const sortOptions = [
     { label: "누적 투자 금액 높은순", value: "actualInvest_desc" },
     { label: "누적 투자 금액 낮은순", value: "actualInvest_asc" },
@@ -24,15 +21,13 @@ export function Home() {
     { label: "고용 인원 낮은순", value: "employees_asc" },
   ];
 
-  // 초기 데이터 로드
   useEffect(() => {
-    fetch("http://localhost:8000/api/investments")
+    fetch("http://localhost:8000/api/investments")    //Rank api로 나중에 변경
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  }, [sortOption]);
 
-  // 정렬된 데이터 생성
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => {
       switch (sortOption) {
@@ -53,37 +48,18 @@ export function Home() {
       }
     });
   }, [sortOption, data]);
-
-  // 검색어를 적용한 필터링된 데이터
-  const filteredData = useMemo(() => {
-    const searchText = searchTerm.toLowerCase();
-    return sortedData.filter((item) => {
-      return (
-        item.name.toLowerCase().includes(searchText) ||
-        item.description.toLowerCase().includes(searchText) ||
-        item.category.category.toLowerCase().includes(searchText)
-      );
-    });
-  }, [searchTerm, sortedData]);
-
+  
   return (
-    <div>
-      <div className={styles.titleBar}>
-        <div className={styles.title}>전체 스타트업 목록</div>
-        <div className={styles.search_box}>
-          <SearchBox
-            onSearchChange={setSearchTerm}
-            debounceTime={300}
-            placeholder="검색어를 입력하세요"
-          />
-        </div>
+    <div className={otherStyle.container}>
+      <div className={otherStyle.resultConfirm}>
+        <h1 className={otherStyle.header_title}>기업 순위 확인하기</h1>
         <CustomSelect
           options={sortOptions}
           onOptionChange={handleSortOptionChange}
           selectedOption={sortOption}
         />
       </div>
-      <WholeList data={filteredData} />
+      <WholeList data={sortedData} perPage={5} isPagination={false}/>
     </div>
-  );
+  )
 }
