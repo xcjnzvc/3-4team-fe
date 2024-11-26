@@ -169,7 +169,12 @@ export function CompareMyCompany() {
           <div>
             <header class="inquiry-header">
               <h1 class="header-title">어떤 기업이 궁금하세요?</h1>
-              <button class="inquiry-add-button">기업 추가하기</button>
+              <button
+                class="inquiry-add-button"
+                onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
+              >
+                기업 추가하기
+              </button>
             </header>
 
             <section class="company-list">
@@ -186,7 +191,9 @@ export function CompareMyCompany() {
             className="compare-button"
             // onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
           >
-            <Link className="compare-button-text" to="/compareResult">기업 비교하기</Link>
+            <Link className="compare-button-text" to="/compareResult">
+              기업 비교하기
+            </Link>
           </button>
         </footer>
       </div>
