@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./investmentButton.module.css";
 import InvestmentModal from "../InvestmentModal/InvestmentModal";
 
-export default function InvestmentButton({ children, id, data }) {
+export default function InvestmentButton({ children, id, data, onSuccess }) {
   const [isModal, setIsModal] = useState(false);
 
   const openModal = () => {
@@ -21,7 +21,7 @@ export default function InvestmentButton({ children, id, data }) {
       </button>
 
       {isModal && (
-        <InvestmentModal closeModal={closeModal} id={id} data={data} />
+        <InvestmentModal closeModal={closeModal} id={id} data={data} onSuccess={onSuccess}/>
       )}
     </>
   );
