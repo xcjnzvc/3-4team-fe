@@ -26,7 +26,9 @@ function CompanyDetails() {
           alt={`${data.name} 로고`}
           className={styles.companyLogo}
         /> */}
-        <span className={styles.circleLogo}>{data.name}</span>
+        <span className={styles.circleLogo}>
+          {data.name ? data.name.charAt(0) : ""}
+        </span>
         <div className={styles.titleBox}>
           <p className={styles.title}>{data.name}</p>
           <p className={styles.subTitle}>
