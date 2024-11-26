@@ -26,6 +26,10 @@ function WholeList({
 
   const style = isResult ? resultStyle : styles; //비교결과 페이지에서 재사용할때(결과컴포넌트에는 순위 없음)
 
+  function getRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }
+
   return (
     <div>
       <div className={style.table}>
@@ -38,26 +42,35 @@ function WholeList({
           <div>매출액</div>
           <div>고용 인원</div>
         </div>
-        {currentItems.map((item, index) => (
-          <Link to={`/company/${item.id}`} key={index} className={style.row}>
-            <div className={style.row}>
-              {isResult ? null : <div>{offset + index + 1}위</div>}
-              <div className={style.leftAlign}>
-                <img
-                  src={item.logo || "img/companyLogo/codeit.png"}
-                  alt={`${item.name} 로고`}
-                  className={style.companyLogo}
-                />
-                {item.name}
+        {currentItems.map((item, index) => {
+          const randomColor = getRandomColor();
+          return (
+            <Link to={`/company/${item.id}`} key={index} className={style.row}>
+              <div className={style.row}>
+                {isResult ? null : <div>{offset + index + 1}위</div>}
+                <div className={style.leftAlign}>
+                  {/* <img
+                    src={item.logo || "img/companyLogo/codeit.png"}
+                    alt={`${item.name} 로고`}
+                    className={style.companyLogo}
+                  /> */}
+                  <span
+                    className={styles.circleLogo}
+                    style={{ backgroundColor: randomColor }}
+                  >
+                    {item.name.charAt(0)}
+                  </span>
+                  {item.name}
+                </div>
+                <div className={style.description}>{item.description}</div>
+                <div>{item.category.category}</div>
+                <div>{item.actualInvest / 100000000}억 원</div>
+                <div>{item.revenue / 100000000}억 원</div>
+                <div>{item.employees}명</div>
               </div>
-              <div className={style.description}>{item.description}</div>
-              <div>{item.category.category}</div>
-              <div>{item.actualInvest / 100000000}억 원</div>
-              <div>{item.revenue / 100000000}억 원</div>
-              <div>{item.employees}명</div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
       {!isPagination ? null : (
         <Pagination
