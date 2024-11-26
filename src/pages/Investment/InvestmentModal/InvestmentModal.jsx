@@ -11,8 +11,28 @@ export default function InvestmentModal({ closeModal, id, data }) {
     confirmPassword: "",
   });
 
+  const formatNumberWithComma = (num) => {
+    if (!num) return "";
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // 투자 금액 필드 처리
+    if (name === "investmentAmount") {
+      // 쉼표 제거 후 숫자만 입력 받음
+      const numericValue = value.replace(/,/g, "");
+      if (!/^\d*$/.test(numericValue)) return; // 숫자가 아니면 무시
+
+      // 상태 업데이트 시 쉼표 추가된 값 저장
+      setFormData({
+        ...formData,
+        [name]: formatNumberWithComma(numericValue),
+      });
+      return;
+    }
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -33,7 +53,7 @@ export default function InvestmentModal({ closeModal, id, data }) {
     const postData = {
       startUpId: Number(id),
       name: formData.investorName,
-      investAmount: Number(formData.investmentAmount),
+      investAmount: Number(formData.investmentAmount.replace(/,/g, "")), // 쉼표 제거 후 숫자로 변환
       comment: formData.investmentComment,
       password: formData.confirmPassword,
     };
@@ -43,10 +63,9 @@ export default function InvestmentModal({ closeModal, id, data }) {
         "http://localhost:8000/api/investments",
         postData
       );
-      if (response.status == 200 || response.status == 201) {
+      if (response.status === 200 || response.status === 201) {
         alert("투자 성공!");
         closeModal();
-        // window.location.reload();
       } else {
         alert("투자 실패");
       }
@@ -94,13 +113,14 @@ export default function InvestmentModal({ closeModal, id, data }) {
           <div className={styles.modal__elem}>
             <label htmlFor="investmentAmount">투자 금액</label>
             <input
-              type="number"
+              type="text"
               id="investmentAmount"
               name="investmentAmount"
               value={formData.investmentAmount}
               onChange={handleChange}
               required
               placeholder="투자 금액을 입력해 주세요"
+              autoComplete="off"
             />
           </div>
 
