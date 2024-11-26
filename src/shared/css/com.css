@@ -35,3 +35,7 @@ a {
   margin: 0 auto;
   position: relative;
 }
+/* 
+input:-internal-autofill-selected {
+  background-color: transparent;
+} */

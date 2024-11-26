@@ -192,7 +192,7 @@ export function CompareMyCompany() {
         <footer className="footer">
           <button
             className="compare-button"
-            onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
+            // onClick={() => handleModalOpen(MODAL_TYPES.COMPARE)}
           >
             <span className="compare-button-text">기업 비교하기</span>
           </button>

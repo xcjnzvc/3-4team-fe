@@ -41,7 +41,7 @@ export function SmallPagenation({
           startPage <= 1 ? styles.disabled : ""
         }`}
       >
-        &lt;
+        {/* &lt; */}
       </li>
 
       {pageNumbers.map((pageNum) => (
@@ -65,7 +65,7 @@ export function SmallPagenation({
           endPage >= totalPages ? styles.disabled : ""
         }`}
       >
-        &gt;
+        {/* &gt; */}
       </li>
     </ul>
   );
