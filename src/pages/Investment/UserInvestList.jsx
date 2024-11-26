@@ -10,9 +10,9 @@ import ModifiedModal from "./UserInvestListModal/ModifiedModal";
 import UserInvestModifyModal from "./UserInvestListModal/UserInvestModifyModal";
 import AuthToModify from "./UserInvestListModal/AuthToModify";
 
-const UserInvestList = ({ companyData }) => {
+const UserInvestList = ({ investData, totalSimInvest }) => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(investData || []);
   const [selectedItemId, setSelectedItemId] = useState(null); // 선택된 항목의 ID 저장
   const [isToDeleteModalOpen, setIsToDeleteModalOpen] = useState(false);
   const [isErrorDeleteModalOpen, setIsErrorDeleteModalOpen] = useState(false);
@@ -25,13 +25,9 @@ const UserInvestList = ({ companyData }) => {
   const [itemToModify, setItemToModify] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/investments/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const sortedData = data.sort((a, b) => b.investAmount - a.investAmount);
-        setData(sortedData);
-      });
-  }, [id, isModifiedModalOpen, isDeletedModalOpen]);
+    // `investData` prop에 대한 의존성 처리
+    setData(investData);
+  }, [investData]);
 
   const itemsPerPage = 5;
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -45,8 +41,7 @@ const UserInvestList = ({ companyData }) => {
 
   const handleMenuToggle = (e, itemId) => {
     if (selectedItemId === itemId) {
-      // 이미 선택된 메뉴를 다시 클릭하면 닫기
-      setSelectedItemId(null);
+      setSelectedItemId(null); // 이미 선택된 메뉴를 다시 클릭하면 닫기
     } else {
       setSelectedItemId(itemId); // 현재 항목 ID로 메뉴 표시
     }
@@ -82,17 +77,15 @@ const UserInvestList = ({ companyData }) => {
 
   const handleDeletedModalClose = () => {
     setIsDeletedModalOpen(false); // 모달 닫기
-    // window.location.reload();
   };
 
   const handleModifiedModalClose = () => {
     setIsModifiedModalOpen(false); // 모달 닫기
-    // window.location.reload();
   };
 
   const handleDeleteConfirm = async (password) => {
     if (!itemToDelete) return;
-
+  
     try {
       const response = await fetch(
         `http://localhost:8000/api/investments/${itemToDelete}`,
@@ -102,38 +95,37 @@ const UserInvestList = ({ companyData }) => {
           body: JSON.stringify({ password }),
         }
       );
-
+  
       if (response.ok) {
-        // 서버에서 삭제 성공 시, 클라이언트 측 데이터 갱신
-        // setData((prevData) =>
-        //   prevData.filter((item) => item.id !== itemToDelete)
-        // );
-        setIsDeletedModalOpen(true);
+        setData((prevData) =>
+          prevData.filter((item) => item.id !== itemToDelete)
+        );
+        setIsDeletedModalOpen(true); 
       } else {
         const errorData = await response.json();
-        setIsErrorDeleteModalOpen(true);
+        setIsErrorDeleteModalOpen(true); 
       }
     } catch (error) {
       console.error("삭제 요청 중 오류 발생:", error);
       alert("삭제 요청 중 문제가 발생했습니다.");
     } finally {
       setSelectedItemId(null);
-      setIsToDeleteModalOpen(false);
+      setIsToDeleteModalOpen(false); // 삭제 모달 닫기
       setItemToDelete(null);
     }
   };
+  
 
   const handleAuthConfirm = (password) => {
     fetch("http://localhost:8000/api/investments/verify-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: itemToModify.id, password }), // ID와 비밀번호 전달
+      body: JSON.stringify({ id: itemToModify.id, password }),
     }).then((res) => {
       if (res.ok) {
-        setIsAuthModalOpen(false); // 첫 번째 모달 닫기
-        setIsToModifyModalOpen(true); // 두 번째 모달 열기
+        setIsAuthModalOpen(false);
+        setIsToModifyModalOpen(true);
       } else {
-        // alert("비밀번호가 틀렸습니다!");
         setIsErrorModifyModalOpen(true);
         setIsAuthModalOpen(false);
       }
@@ -148,11 +140,10 @@ const UserInvestList = ({ companyData }) => {
     fetch(`http://localhost:8000/api/investments/${itemToModify.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formattedData), // 변환된 데이터를 전송
+      body: JSON.stringify(formattedData),
     }).then(async (res) => {
       if (res.ok) {
-        // alert("수정 완료!");
-        setIsToModifyModalOpen(false); // 두 번째 모달 닫기
+        setIsToModifyModalOpen(false);
         setIsModifiedModalOpen(true);
       } else {
         const error = await res.json();
@@ -175,7 +166,7 @@ const UserInvestList = ({ companyData }) => {
       ) : (
         <div>
           <div className={styles.totalSimIvest}>
-            총 {companyData.simInvest / 100000000}억 원
+            총 {totalSimInvest / 100000000}억 원
           </div>
           <div className={styles.table}>
             <div className={`${styles.row} ${styles.header}`}>
@@ -204,25 +195,21 @@ const UserInvestList = ({ companyData }) => {
                 </div>
               </div>
             ))}
-
             {selectedItemId && (
               <div className={styles.overlay} onClick={handleMenuClose}></div>
             )}
-
             {isToDeleteModalOpen && (
               <UserInvestDeleteModal
                 onClose={handleModalClose}
                 onConfirm={handleDeleteConfirm}
               />
             )}
-
             {isAuthModalOpen && (
               <AuthToModify
                 onClose={() => setIsAuthModalOpen(false)}
                 onConfirm={handleAuthConfirm}
               />
             )}
-
             {isToModifyModalOpen && itemToModify && (
               <UserInvestModifyModal
                 onClose={() => setIsToModifyModalOpen(false)}
@@ -230,18 +217,20 @@ const UserInvestList = ({ companyData }) => {
                 currentData={itemToModify}
               />
             )}
-
             {isErrorDeleteModalOpen && (
               <ErrorDeleteModal onClose={handleErrorDeleteModalClose} />
             )}
-
             {isErrorModifyModalOpen && (
               <ErrorModifyModal onClose={handleErrorModifyModalClose} />
             )}
-
             {isModifiedModalOpen && (
               <ModifiedModal onClose={handleModifiedModalClose} />
             )}
+            {
+              isDeletedModalOpen && (
+                <DeletedModal onClose={handleDeletedModalClose} />
+              )
+            }
           </div>
           <Pagination
             totalPages={totalPages}
@@ -251,8 +240,6 @@ const UserInvestList = ({ companyData }) => {
           />
         </div>
       )}
-
-      {isDeletedModalOpen && <DeletedModal onClose={handleDeletedModalClose} />}
     </>
   );
 };
