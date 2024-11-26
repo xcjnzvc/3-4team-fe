@@ -100,7 +100,7 @@ export function CompareMyCompany() {
       )}
 
       <div className="container">
-        <header className="header">
+        <div className="company-selection-container">
           <h1 className="header-title">나의 기업을 선택해 주세요!</h1>
           {isCompanyAdded && (
           <p
@@ -110,7 +110,7 @@ export function CompareMyCompany() {
             선택 취소
           </p>
         )}
-        </header>
+        </div>
 
         {/* <section className="company-list">
           {selectMyCompany ? null : (

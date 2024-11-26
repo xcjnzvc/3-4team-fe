@@ -1,10 +1,4 @@
-@media (min-width: 300px) {
-  CompareMyCompany {
-    font-size: 70px;
-  }
-}
-
-.header {
+.company-selection-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 150px;
