@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { getCompanyApi } from "../api/api";
 import { useState } from "react";
+import styles from "../../pages/compare/modal.module.css";
 
 export default function SearchComponenet({
   className,
@@ -34,6 +35,7 @@ export default function SearchComponenet({
         <img src="/img/ic_search.png" />
       </button>
       <input
+        autoComplete="off"
         type="text"
         value={searchKeyword}
         name="compare_search"
