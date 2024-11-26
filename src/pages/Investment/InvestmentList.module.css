@@ -1,3 +1,14 @@
+@media (max-width: 744px) {
+  .table {
+    width: 269px;
+    height: 48px;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .table {
   margin-top: 16px;
   display: grid;
