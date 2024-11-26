@@ -1,3 +1,14 @@
+@media (max-width: 768px) {
+  .titleBar {
+    width: 696px;
+    background-color: red;
+  }
+  .title {
+    width: 696px;
+    background-color: red;
+  }
+}
+
 .titleBar {
   display: flex;
   justify-content: end;
