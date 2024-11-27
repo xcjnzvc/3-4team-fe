@@ -1,0 +1,17 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button > img {
+  width: 24px;
+}
+button.add {
+  color: #d8d8d8;
+}
+
+.select_text {
+  color: #747474;
+  border: 1px solid #fff;
+}

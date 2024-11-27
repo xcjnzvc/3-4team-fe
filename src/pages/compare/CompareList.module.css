@@ -1,0 +1,83 @@
+.table {
+  margin-top: 16px;
+  display: grid;
+  /* grid-template-columns: 68px 213px 304px 153px 230px 230px; */
+  grid-template-columns: 0.57fr 1.78fr 2.54fr 1.28fr 1.92fr 1.92fr;
+}
+
+.row {
+  display: contents; /* row의 자식 요소들이 row의 상위요소에 직접 포함되게 끔 */
+}
+
+.table .header div {
+  height: 39px;
+  line-height: 39px;
+  border: none;
+  margin-bottom: 16px;
+  font-weight: 500;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+.row div {
+  height: 64px;
+  line-height: 64px;
+  background-color: #1f1f1f;
+  color: #d8d8d8;
+  border-bottom: 1px solid #4b4b4b;
+  text-align: center;
+  font-size: 14px;
+}
+
+.row .leftAlign {
+  text-align: left;
+}
+
+.companyLogo {
+  width: 32px;
+  height: 32px;
+  margin-left: 24px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.circleLogo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 30px;
+  margin-left: 24px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0.5px solid #ffffff;
+  color: #000000c5;
+  box-sizing: border-box;
+}
+
+.row .description {
+  padding: 0 16px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .hideOnMobile {
+  display: block;
+} */
+
+@media (max-width: 768px) {
+  /* .hideOnMobile {
+    display: none;
+  } */
+
+  .table {
+    grid-template-columns: 68px 1fr 230px;
+  }
+}
